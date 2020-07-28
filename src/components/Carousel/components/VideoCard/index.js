@@ -6,13 +6,6 @@ import { setSelectedMovie } from "../../../../redux/selectedMovie/selectedMovie-
 
 import { withRouter } from "react-router";
 
-function getYouTubeId(youtubeURL) {
-  return youtubeURL.replace(
-    /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/,
-    "$7"
-  );
-}
-
 function VideoCard({
   videoTitle,
   categoryColor,
@@ -20,20 +13,33 @@ function VideoCard({
   id,
   setSelectedMovie,
   history,
+  genres,
 }) {
-  // const image = `https://img.youtube.com/vi/${getYouTubeId(videoURL)}/hqdefault.jpg`;
+  console.log(genres);
+  let genresString = "";
+  for (let i = 0; i < 2; i++) {
+    genresString += genres[i];
+    if (genres.length === 1) break;
+    if (i < 1) {
+      genresString += " | ";
+    }
+  }
   const image = `https://image.tmdb.org/t/p/w200/${poster}`;
   return (
-    <VideoCardContainer
-      onClick={() => {
-        setSelectedMovie(id);
-        history.push("./details");
-      }}
-      url={image}
-      target="_blank"
-      style={{ borderColor: categoryColor || "red" }}
-      title={videoTitle}
-    />
+    <>
+      <p style={{ "text-align": "center" }}>{genresString}</p>
+      <VideoCardContainer
+        onClick={() => {
+          setSelectedMovie(id);
+          history.push("./details");
+        }}
+        url={image}
+        target="_blank"
+        style={{ borderColor: categoryColor || "red" }}
+        title={videoTitle}
+        genres={genres}
+      />
+    </>
   );
 }
 

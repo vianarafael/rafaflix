@@ -9,6 +9,8 @@ function Home() {
   const [popular, setPopular] = useState([]);
   const [nowPlaying, setNowPlaying] = useState([]);
 
+  const [genres, setGenres] = useState([]);
+
   useEffect(() => {
     fetch(
       "https://api.themoviedb.org/3/movie/upcoming?api_key=e576111d75dee905a12167d6f1387f71&language=en-US&page=1"
@@ -33,8 +35,13 @@ function Home() {
     )
       .then((res) => res.json())
       .then((res) => setNowPlaying(res.results));
-  }, [setNowPlaying, setPopular, setTopRated, setUpcoming]);
 
+    fetch(
+      "https://api.themoviedb.org/3/genre/movie/list?api_key=e576111d75dee905a12167d6f1387f71&language=en-US"
+    )
+      .then((res) => res.json())
+      .then((res) => setGenres(res.results));
+  }, [setNowPlaying, setPopular, setTopRated, setUpcoming, setGenres]);
   return (
     <div style={{ background: "#141414" }}>
       <BannerMain
@@ -47,13 +54,33 @@ function Home() {
       />
       <Carousel ignoreFirstVideo />
 
-      <Carousel color={"#00c86f"} title="Popular" films={popular} />
+      <Carousel
+        color={"#00c86f"}
+        title="Popular"
+        films={popular}
+        genre_ids={popular.genre_ids}
+      />
 
-      <Carousel color={"#9cd33b"} title="Top Rated" films={topRated} />
+      <Carousel
+        color={"#9cd33b"}
+        title="Top Rated"
+        films={topRated}
+        genre_ids={topRated.genre_ids}
+      />
 
-      <Carousel color={"orange"} title="Now Playing" films={nowPlaying} />
+      <Carousel
+        color={"orange"}
+        title="Now Playing"
+        films={nowPlaying}
+        genre_ids={nowPlaying.genre_ids}
+      />
 
-      <Carousel color={"red"} title="Upcoming" films={upcoming} />
+      <Carousel
+        color={"red"}
+        title="Upcoming"
+        films={upcoming}
+        genre_ids={upcoming.genre_ids}
+      />
     </div>
   );
 }
