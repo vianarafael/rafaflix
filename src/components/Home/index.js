@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Route, BrowserRouter as Router } from "react-router-dom";
 
-import Menu from "./components/Menu/menu.components";
-import Home from "./components/Home";
-import Details from "./components/Details";
-import Footer from "./components/Footer";
+import Carousel from "../Carousel";
+import BannerMain from "../BannerMain";
 
-function App() {
+function Home() {
   const [upcoming, setUpcoming] = useState([]);
   const [topRated, setTopRated] = useState([]);
   const [popular, setPopular] = useState([]);
@@ -40,15 +37,25 @@ function App() {
 
   return (
     <div style={{ background: "#141414" }}>
-      <Menu />
-      <Router>
-        <Route exact path="/" component={Home} />
-        <Route path="/details" component={Details} />
-      </Router>
+      <BannerMain
+        videoTitle="Composing Movement"
+        // url={dadosIniciais.categorias[0].videos[0].url}
+        url={"https://www.youtube.com/watch?v=doaQC-S8de8"}
+        videoDescription={
+          "Can movement tell a story? Sure, if you’re as gifted as Akira Kurosawa. More than any other filmmaker, he had an innate understanding of movement and how to capture it onscreen. Join me today in studying the master, possibly the greatest composer of motion in film history."
+        }
+      />
+      <Carousel ignoreFirstVideo />
 
-      <Footer />
+      <Carousel color={"#00c86f"} title="Popular" films={popular} />
+
+      <Carousel color={"#9cd33b"} title="Top Rated" films={topRated} />
+
+      <Carousel color={"orange"} title="Now Playing" films={nowPlaying} />
+
+      <Carousel color={"red"} title="Upcoming" films={upcoming} />
     </div>
   );
 }
 
-export default App;
+export default Home;

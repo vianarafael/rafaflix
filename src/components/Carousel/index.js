@@ -13,12 +13,6 @@ function VideoCardGroup({ color, title, films }) {
         <Title style={{ backgroundColor: categoryColor || "red" }}>
           {categoryTitle}
         </Title>
-        // {categoryExtraLink && (
-        //   <ExtraLink href={categoryExtraLink.url} target="_blank">
-        //     {categoryExtraLink.text}
-        //   </ExtraLink>
-        // )}
-        // </>
       )}
       <VideoCardList>
         {console.log(films)}
@@ -26,6 +20,7 @@ function VideoCardGroup({ color, title, films }) {
           ? films.map((film) => (
               <li key={film.original_title}>
                 <VideoCard
+                  id={film.id}
                   videoTitle={film.original_title}
                   videoURL={null}
                   poster={film.poster_path}
