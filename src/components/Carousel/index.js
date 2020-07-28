@@ -5,6 +5,10 @@ import VideoCard from "./components/VideoCard";
 function VideoCardGroup({ color, title, films }) {
   const categoryTitle = title;
   const categoryColor = color;
+  // hacky - removing the film that has no videos
+  if (films) {
+    films = films.filter((film) => film.id !== 19404);
+  }
 
   return (
     <VideoCardGroupContainer>
@@ -15,7 +19,6 @@ function VideoCardGroup({ color, title, films }) {
         </Title>
       )}
       <VideoCardList>
-        {console.log(films)}
         {films
           ? films.map((film) => (
               <li key={film.original_title}>

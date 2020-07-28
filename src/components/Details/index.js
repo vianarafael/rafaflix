@@ -14,7 +14,7 @@ const Details = ({ selectedMovie }) => {
       .then((res) => res.json())
       .then((res) => setDetails(res));
   }, []);
-
+  console.log(details);
   return (
     <div>
       {details ? (
@@ -24,7 +24,7 @@ const Details = ({ selectedMovie }) => {
           videoDescription={details.overview}
         />
       ) : (
-        "loading"
+        <h1>An error occured</h1>
       )}
     </div>
   );
