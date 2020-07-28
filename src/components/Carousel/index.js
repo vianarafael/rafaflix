@@ -1,12 +1,14 @@
-import React from 'react';
-import { VideoCardGroupContainer, VideoCardList, Title, ExtraLink } from './styles';
-import VideoCard from './components/VideoCard';
+import React from "react";
+import {
+  VideoCardGroupContainer,
+  VideoCardList,
+  Title,
+  ExtraLink,
+} from "./styles";
+import VideoCard from "./components/VideoCard";
 
-function VideoCardGroup({
-  ignoreFirstVideo,
-  category,
-}) {
-  const categoryTitle = category.titulo;
+function VideoCardGroup({ category, title, films }) {
+  const categoryTitle = title;
   const categoryColor = category.cor;
   const categoryExtraLink = category.link_extra;
   const videos = category.videos;
@@ -14,35 +16,49 @@ function VideoCardGroup({
     <VideoCardGroupContainer>
       {categoryTitle && (
         <>
-          <Title style={{ backgroundColor: categoryColor || 'red' }}>
+          <Title style={{ backgroundColor: categoryColor || "red" }}>
             {categoryTitle}
           </Title>
-          {categoryExtraLink && 
+          {categoryExtraLink && (
             <ExtraLink href={categoryExtraLink.url} target="_blank">
-              {categoryExtraLink.text}  
+              {categoryExtraLink.text}
             </ExtraLink>
-          }
+          )}
         </>
       )}
       <VideoCardList>
-        {videos.map((video, index) => {
-          if (ignoreFirstVideo && index === 0) {
-            return null;
-          }
-
-          return (
-            <li key={video.titulo}>
-              <VideoCard
-                videoTitle={video.titulo}
-                videoURL={video.url}
-                categoryColor={categoryColor}
-              />
-            </li>
-          );
-        })}
+        {console.log(films)}
+        {films
+          ? films.map((film) => (
+              <li key={film.original_title}>
+                <VideoCard
+                  videoTitle={film.original_title}
+                  videoURL={null}
+                  poster={film.poster_path}
+                  categoryColor={categoryColor}
+                />
+              </li>
+            ))
+          : ""}
       </VideoCardList>
     </VideoCardGroupContainer>
   );
 }
 
 export default VideoCardGroup;
+
+// {videos.map((video, index) => {
+//   if (ignoreFirstVideo && index === 0) {
+//     return null;
+//   }
+
+//   return (
+//     <li key={video.titulo}>
+//       <VideoCard
+//         videoTitle={video.titulo}
+//         videoURL={video.url}
+//         categoryColor={categoryColor}
+//       />
+//     </li>
+//   );
+// })}
