@@ -15,8 +15,8 @@ function VideoCard({
   history,
   genres,
 }) {
-  console.log(genres);
   let genresString = "";
+
   for (let i = 0; i < 2; i++) {
     genresString += genres[i];
     if (genres.length === 1) break;
@@ -24,11 +24,22 @@ function VideoCard({
       genresString += " | ";
     }
   }
+  let time;
   const image = `https://image.tmdb.org/t/p/w200/${poster}`;
   return (
     <>
       <p style={{ "text-align": "center" }}>{genresString}</p>
       <VideoCardContainer
+        onMouseEnter={() => {
+          time = setTimeout(() => {
+            console.log("change");
+            setSelectedMovie(id);
+            history.push("./details");
+          }, 2000);
+        }}
+        onMouseLeave={() => {
+          clearTimeout(time);
+        }}
         onClick={() => {
           setSelectedMovie(id);
           history.push("./details");

@@ -5,7 +5,14 @@ import PageDefault from "../../../components/pageDefault";
 const LoginCategory = () => {
   return (
     <PageDefault>
-      <h1>Cadastro de Categoria</h1>
+      <h1>Category Registration</h1>
+      <form>
+        <label>
+          Category:
+          <input type="text" />
+        </label>
+        <button>Register</button>
+      </form>
       <Link to="/">Go Home</Link>
     </PageDefault>
   );

@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { VideoCardGroupContainer, VideoCardList, Title } from "./styles";
 import VideoCard from "./components/VideoCard";
 
-function VideoCardGroup({ color, title, films }) {
+import Slider, { SliderItem } from "../Carousel/components/Slider";
+
+function Carousel({ color, title, films }) {
   const categoryTitle = title;
   const categoryColor = color;
   const [genres, setGenres] = useState([]);
@@ -34,10 +36,10 @@ function VideoCardGroup({ color, title, films }) {
           {categoryTitle}
         </Title>
       )}
-      <VideoCardList>
+      <Slider>
         {films
           ? films.map((film) => (
-              <li key={film.original_title}>
+              <SliderItem key={film.original_title}>
                 <VideoCard
                   id={film.id}
                   videoTitle={film.original_title}
@@ -47,28 +49,12 @@ function VideoCardGroup({ color, title, films }) {
                   poster={film.poster_path}
                   categoryColor={categoryColor}
                 />
-              </li>
+              </SliderItem>
             ))
           : ""}
-      </VideoCardList>
+      </Slider>
     </VideoCardGroupContainer>
   );
 }
 
-export default VideoCardGroup;
-
-// {videos.map((video, index) => {
-//   if (ignoreFirstVideo && index === 0) {
-//     return null;
-//   }
-
-//   return (
-//     <li key={video.titulo}>
-//       <VideoCard
-//         videoTitle={video.titulo}
-//         videoURL={video.url}
-//         categoryColor={categoryColor}
-//       />
-//     </li>
-//   );
-// })}
+export default Carousel;
