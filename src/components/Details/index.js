@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import BannerMain from "../BannerMain";
-
+import PageDefault from "../pageDefault";
 import { connect } from "react-redux";
 
 const Details = ({ selectedMovie }) => {
@@ -14,19 +14,20 @@ const Details = ({ selectedMovie }) => {
       .then((res) => res.json())
       .then((res) => setDetails(res));
   }, []);
-  console.log(details);
   return (
-    <div>
-      {details ? (
-        <BannerMain
-          videoTitle={details.title}
-          url={details.videos.results[0]["key"]}
-          videoDescription={details.overview}
-        />
-      ) : (
-        <h1>An error occured</h1>
-      )}
-    </div>
+    <PageDefault>
+      <div>
+        {details ? (
+          <BannerMain
+            videoTitle={details.title}
+            url={details.videos.results[0]["key"]}
+            videoDescription={details.overview}
+          />
+        ) : (
+          <h1>An error occured</h1>
+        )}
+      </div>
+    </PageDefault>
   );
 };
 

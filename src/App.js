@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { Route, BrowserRouter as Router } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
-import Menu from "./components/Menu/menu.components";
 import Home from "./components/Home";
 import Details from "./components/Details";
-import Footer from "./components/Footer";
+import Category from "./pages/login/Category";
+import Videos from "./pages/login/Video";
 
 function App() {
   return (
-    <div style={{ background: "#141414" }}>
-      <Menu />
-      <Router>
+    <Router>
+      <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/details" component={Details} />
-      </Router>
-
-      <Footer />
-    </div>
+        <Route exact path="/details" component={Details} />
+        <Route exact path="/videos" component={Videos} />
+        <Route path="/category" component={Category} />
+        <Route component={() => <div style={{ color: "white" }}>404</div>} />
+      </Switch>
+    </Router>
   );
 }
 

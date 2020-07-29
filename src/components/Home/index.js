@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import PageDefault from "../pageDefault";
 import Carousel from "../Carousel";
 import BannerMain from "../BannerMain";
 
@@ -43,45 +43,47 @@ function Home() {
       .then((res) => setGenres(res.results));
   }, [setNowPlaying, setPopular, setTopRated, setUpcoming, setGenres]);
   return (
-    <div style={{ background: "#141414" }}>
-      <BannerMain
-        videoTitle="Composing Movement"
-        // url={dadosIniciais.categorias[0].videos[0].url}
-        url={"https://www.youtube.com/watch?v=doaQC-S8de8"}
-        videoDescription={
-          "Can movement tell a story? Sure, if you’re as gifted as Akira Kurosawa. More than any other filmmaker, he had an innate understanding of movement and how to capture it onscreen. Join me today in studying the master, possibly the greatest composer of motion in film history."
-        }
-      />
-      <Carousel ignoreFirstVideo />
+    <PageDefault>
+      <div style={{ background: "#141414" }}>
+        <BannerMain
+          videoTitle="Composing Movement"
+          // url={dadosIniciais.categorias[0].videos[0].url}
+          url={"https://www.youtube.com/watch?v=doaQC-S8de8"}
+          videoDescription={
+            "Can movement tell a story? Sure, if you’re as gifted as Akira Kurosawa. More than any other filmmaker, he had an innate understanding of movement and how to capture it onscreen. Join me today in studying the master, possibly the greatest composer of motion in film history."
+          }
+        />
+        <Carousel ignoreFirstVideo />
 
-      <Carousel
-        color={"#00c86f"}
-        title="Popular"
-        films={popular}
-        genre_ids={popular.genre_ids}
-      />
+        <Carousel
+          color={"#00c86f"}
+          title="Popular"
+          films={popular}
+          genre_ids={popular.genre_ids}
+        />
 
-      <Carousel
-        color={"#9cd33b"}
-        title="Top Rated"
-        films={topRated}
-        genre_ids={topRated.genre_ids}
-      />
+        <Carousel
+          color={"#9cd33b"}
+          title="Top Rated"
+          films={topRated}
+          genre_ids={topRated.genre_ids}
+        />
 
-      <Carousel
-        color={"orange"}
-        title="Now Playing"
-        films={nowPlaying}
-        genre_ids={nowPlaying.genre_ids}
-      />
+        <Carousel
+          color={"orange"}
+          title="Now Playing"
+          films={nowPlaying}
+          genre_ids={nowPlaying.genre_ids}
+        />
 
-      <Carousel
-        color={"red"}
-        title="Upcoming"
-        films={upcoming}
-        genre_ids={upcoming.genre_ids}
-      />
-    </div>
+        <Carousel
+          color={"red"}
+          title="Upcoming"
+          films={upcoming}
+          genre_ids={upcoming.genre_ids}
+        />
+      </div>
+    </PageDefault>
   );
 }
 
