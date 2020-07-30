@@ -7,10 +7,13 @@ import { connect } from "react-redux";
 import Slider, { SliderItem } from "../Carousel/components/Slider";
 import CastCard from "../Carousel/components/CastCard";
 
+import Loading from "../../assets/loading.gif";
+
 const Details = ({ selectedMovie }) => {
   const [details, setDetails] = useState(null);
   const id = selectedMovie.selectedMovie;
   useEffect(() => {
+    window.scrollTo(0, 0);
     fetch(
       `https://api.themoviedb.org/3/movie/${id}?api_key=e576111d75dee905a12167d6f1387f71&append_to_response=videos,credits`
     )
@@ -45,7 +48,7 @@ const Details = ({ selectedMovie }) => {
             </Slider>
           </div>
         ) : (
-          <h1>An error occured</h1>
+          <img src={Loading} />
         )}
       </div>
     </PageDefault>

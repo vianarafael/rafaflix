@@ -41,6 +41,7 @@ function Carousel({ color, title, films }) {
           ? films.map((film) => (
               <SliderItem key={film.original_title}>
                 <VideoCard
+                  style={{ focus: "none" }}
                   id={film.id}
                   videoTitle={film.original_title}
                   genres={film.genre_ids.map(
