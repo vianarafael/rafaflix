@@ -4,6 +4,9 @@ import BannerMain from "../BannerMain";
 import PageDefault from "../pageDefault";
 import { connect } from "react-redux";
 
+import Slider, { SliderItem } from "../Carousel/components/Slider";
+import CastCard from "../Carousel/components/CastCard";
+
 const Details = ({ selectedMovie }) => {
   const [details, setDetails] = useState(null);
   const id = selectedMovie.selectedMovie;
@@ -25,19 +28,21 @@ const Details = ({ selectedMovie }) => {
               url={details.videos.results[0]["key"]}
               videoDescription={details.overview}
             />
-            <h1>Cast</h1>
-            <ul>
+            <h1 style={{ textAlign: "center" }}>Cast</h1>
+            <Slider>
               {details.credits.cast.map((actor) => {
                 return (
-                  <li>
-                    {
-                      actor.name
+                  <SliderItem key={actor.cast_id}>
+                    <CastCard
+                      name={actor.name}
+                      character={actor.character}
+                      img={actor.profile_path}
                       // , actor.character, actor.profile_path
-                    }
-                  </li>
+                    />
+                  </SliderItem>
                 );
               })}
-            </ul>
+            </Slider>
           </div>
         ) : (
           <h1>An error occured</h1>
