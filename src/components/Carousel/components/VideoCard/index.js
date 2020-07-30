@@ -35,7 +35,7 @@ function VideoCard({
             console.log("change");
             setSelectedMovie(id);
             history.push("./details");
-          }, 2000);
+          }, 4000);
         }}
         onMouseLeave={() => {
           clearTimeout(time);
