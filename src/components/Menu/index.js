@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import Logo from "../../assets/logo.png";
-import "./menu.style.css";
-import { Link } from "react-router-dom";
-import Button from "../Button/button.component";
+import React, { useState } from 'react';
+import Logo from '../../assets/logo.png';
+import './menu.style.css';
+import { Link } from 'react-router-dom';
+import Button from '../Button/button.component';
 
-import styled from "styled-components";
-import { connect } from "react-redux";
-import { setSearchedFilm } from "../../redux/searched-film/searched-film.action";
+import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { setSearchedFilm } from '../../redux/searched-film/searched-film.action';
 
 const Search = styled.input`
   color: var(--white);
@@ -31,7 +31,7 @@ const Search = styled.input`
 `;
 
 const Menu = ({ setSearchedFilm }) => {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
 
   const searchMovie = () => {
     fetch(
@@ -49,7 +49,7 @@ const Menu = ({ setSearchedFilm }) => {
         <Button
           onClick={() => {
             searchMovie();
-            setQuery("");
+            setQuery('');
           }}
         >
           <i class="fas fa-search"></i>
@@ -61,7 +61,7 @@ const Menu = ({ setSearchedFilm }) => {
         />
       </div>
       <Button as={Link} className="ButtonLink" to="/videos">
-        New Video
+        LOGIN
       </Button>
     </nav>
   );
