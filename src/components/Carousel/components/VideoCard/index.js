@@ -1,10 +1,10 @@
-import React from "react";
-import { VideoCardContainer } from "./styles";
+import React from 'react';
+import { VideoCardContainer } from './styles';
 
-import { connect } from "react-redux";
-import { setSelectedMovie } from "../../../../redux/selectedMovie/selectedMovie-action";
+import { connect } from 'react-redux';
+import { setSelectedMovie } from '../../../../redux/selectedMovie/selectedMovie-action';
 
-import { withRouter } from "react-router";
+import { withRouter } from 'react-router';
 
 function VideoCard({
   videoTitle,
@@ -15,26 +15,25 @@ function VideoCard({
   history,
   genres,
 }) {
-  let genresString = "";
+  let genresString = '';
 
   for (let i = 0; i < 2; i++) {
     genresString += genres[i];
     if (genres.length === 1) break;
     if (i < 1) {
-      genresString += " | ";
+      genresString += ' | ';
     }
   }
   let time;
   const image = `https://image.tmdb.org/t/p/w200/${poster}`;
   return (
     <>
-      <p style={{ "text-align": "center" }}>{genresString}</p>
+      <p style={{ 'text-align': 'center' }}>{genresString}</p>
       <VideoCardContainer
         onMouseEnter={() => {
           time = setTimeout(() => {
-            console.log("change");
             setSelectedMovie(id);
-            history.push("./details");
+            history.push('./details');
           }, 4000);
         }}
         onMouseLeave={() => {
@@ -42,11 +41,11 @@ function VideoCard({
         }}
         onClick={() => {
           setSelectedMovie(id);
-          history.push("./details");
+          history.push('./details');
         }}
         url={image}
         target="_blank"
-        style={{ borderColor: categoryColor || "red" }}
+        style={{ borderColor: categoryColor || 'red' }}
         title={videoTitle}
         genres={genres}
       />

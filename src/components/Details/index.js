@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import BannerMain from "../BannerMain";
-import PageDefault from "../pageDefault";
-import { connect } from "react-redux";
+import BannerMain from '../BannerMain';
+import PageDefault from '../pageDefault';
+import { connect } from 'react-redux';
 
-import Slider, { SliderItem } from "../Carousel/components/Slider";
-import CastCard from "../Carousel/components/CastCard";
+import Slider, { SliderItem } from '../Carousel/components/Slider';
+import CastCard from '../Carousel/components/CastCard';
 
-import Loading from "../../assets/loading.gif";
+import Loading from '../../assets/loading.gif';
 
 const Details = ({ selectedMovie }) => {
   const [details, setDetails] = useState(null);
@@ -20,7 +20,7 @@ const Details = ({ selectedMovie }) => {
       .then((res) => res.json())
       .then((res) => setDetails(res));
   }, []);
-  console.log(details);
+  console.log('aqui', details);
   return (
     <PageDefault>
       <div>
@@ -28,15 +28,16 @@ const Details = ({ selectedMovie }) => {
           <div>
             <BannerMain
               videoTitle={details.title}
-              url={details.videos.results[0]["key"]}
+              url={details.videos.results[0]['key']}
               videoDescription={details.overview}
             />
-            <h1 style={{ textAlign: "center" }}>Cast</h1>
+            <h1 style={{ textAlign: 'center' }}>Cast</h1>
             <Slider>
               {details.credits.cast.map((actor) => {
                 return (
                   <SliderItem key={actor.cast_id}>
                     <CastCard
+                      id={actor.id}
                       name={actor.name}
                       character={actor.character}
                       img={actor.profile_path}

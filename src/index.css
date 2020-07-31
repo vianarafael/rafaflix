@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 :root {
@@ -26,7 +26,6 @@ a {
 
 #root {
   min-height: calc(100vh);
-  background: orange;
   display: flex;
   flex-direction: column;
 }

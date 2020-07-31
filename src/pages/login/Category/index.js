@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import PageDefault from "../../../components/pageDefault";
-import FormField from "../../../components/FormField";
-import Button from "../../../components/Button/button.component";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import PageDefault from '../../../components/pageDefault';
+import FormField from '../../../components/FormField';
+import Button from '../../../components/Button/button.component';
 
 const Category = () => {
   const initialValue = {
-    name: "",
-    description: "",
-    color: "",
+    name: '',
+    description: '',
+    color: '',
   };
 
   const [categories, setCategories] = useState([]);
@@ -22,22 +22,26 @@ const Category = () => {
   };
 
   const handleChange = (e) => {
-    setValue(e.target.getAttribute("name"), e.target.value);
+    setValue(e.target.getAttribute('name'), e.target.value);
   };
 
-  console.log(values);
+  useEffect(() => {
+    const URL = 'http://localhost:8080/category';
+    fetch(URL)
+      .then((res) => res.json())
+      .then((res) => console.log(res));
+  }, []);
 
   return (
     <PageDefault>
-      <div style={{ textAlign: "center" }}>
-        <h1>{values.name || "Register a category"}</h1>
+      <div style={{ textAlign: 'center' }}>
+        <h1>{values.name || 'Register a category'}</h1>
         <form
           onSubmit={function handleSubmit(e) {
             e.preventDefault();
             setCategories([...categories, values]);
 
             setValues(initialValue);
-            console.log(values);
           }}
         >
           <FormField
@@ -64,16 +68,11 @@ const Category = () => {
             onChange={handleChange}
           />
           <br />
-          <Button style={{ background: "black" }}>Register</Button>
+          <Button>Register</Button>
         </form>
-        <ul style={{ textAlign: "center" }}>
-          {" "}
+        <ul>
           {categories.map((category, index) => {
-            return (
-              <li key={index} style={{ listStyle: "none", color: "#e50914" }}>
-                {category.name}
-              </li>
-            );
+            return <li key={index}>{category.name}</li>;
           })}
         </ul>
         <Link to="/">Go Home</Link>

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { VideoCardGroupContainer, VideoCardList, Title } from "./styles";
-import VideoCard from "./components/VideoCard";
+import React, { useState, useEffect } from 'react';
+import { VideoCardGroupContainer, Title } from './styles';
+import VideoCard from './components/VideoCard';
 
-import Slider, { SliderItem } from "../Carousel/components/Slider";
+import Slider, { SliderItem } from '../Carousel/components/Slider';
 
 function Carousel({ color, title, films }) {
   const categoryTitle = title;
@@ -15,7 +15,7 @@ function Carousel({ color, title, films }) {
 
   useEffect(() => {
     fetch(
-      "https://api.themoviedb.org/3/genre/movie/list?api_key=e576111d75dee905a12167d6f1387f71&language=en-US"
+      'https://api.themoviedb.org/3/genre/movie/list?api_key=e576111d75dee905a12167d6f1387f71&language=en-US'
     )
       .then((res) => res.json())
       .then((res) => setGenres(res.genres));
@@ -32,7 +32,7 @@ function Carousel({ color, title, films }) {
     <VideoCardGroupContainer>
       {categoryTitle && (
         // <>
-        <Title style={{ backgroundColor: categoryColor || "red" }}>
+        <Title style={{ backgroundColor: categoryColor || 'red' }}>
           {categoryTitle}
         </Title>
       )}
@@ -41,7 +41,6 @@ function Carousel({ color, title, films }) {
           ? films.map((film) => (
               <SliderItem key={film.original_title}>
                 <VideoCard
-                  style={{ focus: "none" }}
                   id={film.id}
                   videoTitle={film.original_title}
                   genres={film.genre_ids.map(
@@ -52,7 +51,7 @@ function Carousel({ color, title, films }) {
                 />
               </SliderItem>
             ))
-          : ""}
+          : ''}
       </Slider>
     </VideoCardGroupContainer>
   );
