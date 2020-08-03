@@ -1,8 +1,8 @@
-import React from "react";
-import Menu from "../Menu";
-import Footer from "../Footer";
+import React from 'react';
+import Menu from '../Menu';
+import Footer from '../Footer';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Main = styled.main`
   background-color: var(--black);
@@ -13,10 +13,10 @@ const Main = styled.main`
   padding-right: 5%;
 `;
 
-const PageDefault = ({ children }) => {
+const PageDefault = ({ children, currentUser }) => {
   return (
     <>
-      <Menu />
+      <Menu currentUser={currentUser} />
       <Main>{children}</Main>
       <Footer />
     </>

@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { setSearchedFilm } from '../../redux/searched-film/searched-film.action';
 
 import { withRouter } from 'react-router';
+import { auth } from '../../firebase/firebase.utils';
 
 const Search = styled.input`
   color: var(--white);
@@ -63,9 +64,13 @@ const Menu = ({ setSearchedFilm, currentUser, history }) => {
           onChange={(e) => setQuery(e.target.value)}
         />
       </div>
-      <Button as={Link} className="ButtonLink" to="/videos">
-        LOGIN
-      </Button>
+      {currentUser ? (
+        <Button onClick={() => auth.signOut()}>SIGN OUT</Button>
+      ) : (
+        <Button as={Link} className="ButtonLink" to="/videos">
+          SIGN IN
+        </Button>
+      )}
     </nav>
   );
 };
