@@ -22,7 +22,7 @@ const Details = ({ selectedMovie }) => {
   }, []);
 
   return (
-    <PageDefault>
+    <>
       <div>
         {details ? (
           <div>
@@ -52,7 +52,7 @@ const Details = ({ selectedMovie }) => {
           <img src={Loading} />
         )}
       </div>
-    </PageDefault>
+    </>
   );
 };
 

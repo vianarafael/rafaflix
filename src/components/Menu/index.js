@@ -8,6 +8,8 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { setSearchedFilm } from '../../redux/searched-film/searched-film.action';
 
+import { withRouter } from 'react-router';
+
 const Search = styled.input`
   color: var(--white);
   height: 3rem;
@@ -30,9 +32,9 @@ const Search = styled.input`
   } */
 `;
 
-const Menu = ({ setSearchedFilm }) => {
+const Menu = ({ setSearchedFilm, currentUser, history }) => {
   const [query, setQuery] = useState('');
-
+  console.log('currentUser', currentUser);
   const searchMovie = () => {
     fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=e576111d75dee905a12167d6f1387f71&language=en-US&query=${query}`
@@ -50,6 +52,7 @@ const Menu = ({ setSearchedFilm }) => {
           onClick={() => {
             searchMovie();
             setQuery('');
+            history.push('/');
           }}
         >
           <i class="fas fa-search"></i>
@@ -71,4 +74,6 @@ const mapDispatchToProps = (dispatch) => ({
   setSearchedFilm: (searchedFilm) => dispatch(setSearchedFilm(searchedFilm)),
 });
 
-export default connect(null, mapDispatchToProps)(Menu);
+const MenuWithRouter = withRouter(Menu);
+
+export default connect(null, mapDispatchToProps)(MenuWithRouter);

@@ -6,10 +6,11 @@ import './style.scss';
 
 import Button from '../../../components/Button/button.component';
 
+import { signInWithGoogle } from '../../../firebase/firebase.utils';
 
 const LoginVideo = () => {
   return (
-    <PageDefault>
+    <>
       <div className="container">
         <div className="sign-in">
           <h2>I already have an account</h2>
@@ -34,7 +35,7 @@ const LoginVideo = () => {
             />
             <div className="buttons">
               <Button type="submit">Sign In</Button>
-              <Button onClick={console.log('signInWithGoogle')} isGoogleSignIn>
+              <Button onClick={signInWithGoogle} isGoogleSignIn>
                 Sign In With Google
               </Button>
             </div>
@@ -81,7 +82,7 @@ const LoginVideo = () => {
           </form>
         </div>
       </div>
-    </PageDefault>
+    </>
   );
 };
 

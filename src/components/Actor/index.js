@@ -5,8 +5,6 @@ import { VideoCardContainer } from '../Carousel/components/VideoCard/styles';
 
 import './styles.css';
 
-import PageDefault from '../pageDefault';
-
 const Actor = ({ selectedActor }) => {
   const [actor, setActor] = useState('');
   const id = selectedActor.selectedActor;
@@ -21,13 +19,13 @@ const Actor = ({ selectedActor }) => {
   const image = `https://image.tmdb.org/t/p/w200/${actor.profile_path}`;
   console.log(actor);
   return (
-    <PageDefault>
+    <>
       <div className="actor-container">
         <h1>{actor.name}</h1>
         <VideoCardContainer className="actor-img" url={image} />
         <p>{actor.biography}</p>
       </div>
-    </PageDefault>
+    </>
   );
 };
 
