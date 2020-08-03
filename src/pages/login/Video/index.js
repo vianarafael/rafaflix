@@ -6,6 +6,7 @@ import './style.scss';
 
 import Button from '../../../components/Button/button.component';
 
+
 const LoginVideo = () => {
   return (
     <PageDefault>

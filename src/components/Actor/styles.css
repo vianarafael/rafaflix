@@ -1,0 +1,15 @@
+.actor-container {
+  margin: 0 auto;
+  width: 60%;
+  border: 2px solid white;
+  border-radius: 32px;
+}
+
+.actor-container h1,
+.actor-container p {
+  margin: 24px;
+}
+
+.actor-img {
+  pointer-events: none;
+}

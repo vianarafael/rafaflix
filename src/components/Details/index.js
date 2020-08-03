@@ -20,7 +20,7 @@ const Details = ({ selectedMovie }) => {
       .then((res) => res.json())
       .then((res) => setDetails(res));
   }, []);
-  console.log('aqui', details);
+
   return (
     <PageDefault>
       <div>

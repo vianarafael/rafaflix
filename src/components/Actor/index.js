@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import selectedActorReducer from '../../redux/selectedActor/selectedActor.reducer';
+import { VideoCardContainer } from '../Carousel/components/VideoCard/styles';
+
+import './styles.css';
+
+import PageDefault from '../pageDefault';
 
 const Actor = ({ selectedActor }) => {
   const [actor, setActor] = useState('');
@@ -13,11 +18,16 @@ const Actor = ({ selectedActor }) => {
       .then((res) => res.json())
       .then((res) => setActor(res));
   });
-
+  const image = `https://image.tmdb.org/t/p/w200/${actor.profile_path}`;
+  console.log(actor);
   return (
-    <>
-      <h1>{actor.name}</h1>
-    </>
+    <PageDefault>
+      <div className="actor-container">
+        <h1>{actor.name}</h1>
+        <VideoCardContainer className="actor-img" url={image} />
+        <p>{actor.biography}</p>
+      </div>
+    </PageDefault>
   );
 };
 
