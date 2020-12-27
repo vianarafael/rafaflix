@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import PageDefault from '../../../components/pageDefault';
 import FormInput from '../../../components/form-input/form-input.component';
@@ -9,6 +9,11 @@ import Button from '../../../components/Button/button.component';
 import { signInWithGoogle } from '../../../firebase/firebase.utils';
 
 const LoginVideo = () => {
+  const [userName, setUserName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [password2, setPassword2] = useState('');
+
   return (
     <>
       <div className="container">
@@ -16,7 +21,7 @@ const LoginVideo = () => {
           <h2>I already have an account</h2>
           <span>Sign in with your email and password</span>
 
-          <form onSubmit={console.log('submit')}>
+          <form>
             <FormInput
               name="email"
               type="email"
@@ -45,13 +50,16 @@ const LoginVideo = () => {
         <div className="sign-up">
           <h2 className="title">I do not have a account</h2>
           <span>Sign up with your email and password</span>
-          <form className="sign-up-form" onSubmit={console.log('o')}>
+          <form className="sign-up-form">
             <FormInput
               type="text"
               name="displayName"
               // value={displayName}
               // onChange={this.handleChange}
-              label="Display Name"
+              onChange={(e) => {
+                setUserName(e.target.value);
+              }}
+              label="User Name"
               required
             />
             <FormInput
@@ -59,6 +67,9 @@ const LoginVideo = () => {
               name="email"
               // value={email}
               // onChange={this.handleChange}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
               label="Email"
               required
             />
@@ -67,6 +78,9 @@ const LoginVideo = () => {
               name="password"
               // value={password}
               // onChange={this.handleChange}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               label="Password"
               required
             />
@@ -75,10 +89,20 @@ const LoginVideo = () => {
               name="confirmPassword"
               // value={confirmPassword}
               // onChange={this.handleChange}
+              onChange={(e) => {
+                setPassword2(e.target.value);
+              }}
               label="Confirm Password"
               required
             />
-            <Button type="submit">SIGN UP</Button>
+            <Button
+              type="submit"
+              onClick={() => {
+                console.log(userName, email, password, password2);
+              }}
+            >
+              SIGN UP
+            </Button>
           </form>
         </div>
       </div>
