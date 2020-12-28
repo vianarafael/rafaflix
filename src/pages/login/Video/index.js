@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -11,6 +12,7 @@ import Button from '../../../components/Button/button.component';
 import { signInWithGoogle } from '../../../firebase/firebase.utils';
 
 const LoginVideo = () => {
+  const history = useHistory();
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -46,12 +48,16 @@ const LoginVideo = () => {
                 type="submit"
                 onClick={(e) => {
                   e.preventDefault();
+                  // console.log(loginEmail, loginPW);
                   axios
                     .post('http://localhost:5000/users/login', {
-                      email,
-                      password,
+                      email: loginEmail,
+                      password: loginPW,
                     })
-                    .then((res) => console.log(res))
+                    .then((res) => {
+                      console.log(res.data);
+                      history.push('/');
+                    })
                     .catch((err) => console.log(err));
                 }}
               >
