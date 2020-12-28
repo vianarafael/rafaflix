@@ -35,7 +35,6 @@ const Search = styled.input`
 
 const Menu = ({ setSearchedFilm, currentUser, history }) => {
   const [query, setQuery] = useState('');
-  console.log('currentUser', currentUser);
   const searchMovie = () => {
     fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=e576111d75dee905a12167d6f1387f71&language=en-US&query=${query}`
@@ -56,7 +55,7 @@ const Menu = ({ setSearchedFilm, currentUser, history }) => {
             history.push('/');
           }}
         >
-          <i class="fas fa-search"></i>
+          <i className="fas fa-search"></i>
         </Button>
         <Search
           placeholder="Search..."

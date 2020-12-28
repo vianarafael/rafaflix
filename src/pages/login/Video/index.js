@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import axios from 'axios';
+
 import PageDefault from '../../../components/pageDefault';
 import FormInput from '../../../components/form-input/form-input.component';
 import './style.scss';
@@ -97,8 +99,18 @@ const LoginVideo = () => {
             />
             <Button
               type="submit"
-              onClick={() => {
-                console.log(userName, email, password, password2);
+              onClick={(e) => {
+                e.preventDefault();
+                // connect to the server
+                axios
+                  .post('http://localhost:5000/users/register', {
+                    name: userName,
+                    email,
+                    password,
+                    password2,
+                  })
+                  .then((res) => console.log(res.data))
+                  .catch((err) => console.log(err));
               }}
             >
               SIGN UP
