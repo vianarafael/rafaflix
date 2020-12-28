@@ -16,6 +16,9 @@ const LoginVideo = () => {
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
 
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPW, setLoginPW] = useState('');
+
   return (
     <>
       <div className="container">
@@ -28,20 +31,32 @@ const LoginVideo = () => {
               name="email"
               type="email"
               label="email"
-              // value={this.state.email}
-              // handleChange={this.handleChange}
+              onChange={(e) => setLoginEmail(e.target.value)}
               required
             />
             <FormInput
               name="password"
               type="password"
               label="password"
-              // value={this.state.password}
-              // handleChange={this.handleChange}
+              onChange={(e) => setLoginPW(e.target.value)}
               required
             />
             <div className="buttons">
-              <Button type="submit">Sign In</Button>
+              <Button
+                type="submit"
+                onClick={(e) => {
+                  e.preventDefault();
+                  axios
+                    .post('http://localhost:5000/users/login', {
+                      email,
+                      password,
+                    })
+                    .then((res) => console.log(res))
+                    .catch((err) => console.log(err));
+                }}
+              >
+                Sign In
+              </Button>
               <Button onClick={signInWithGoogle} isGoogleSignIn>
                 Sign In With Google
               </Button>
