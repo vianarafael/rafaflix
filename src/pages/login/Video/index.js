@@ -57,14 +57,14 @@ const LoginVideo = () => {
                     .then((res) => {
                       console.log(res.data);
                       history.push('/');
+                      // save the relevant data
+
+                      // log in button becomes log out
                     })
                     .catch((err) => console.log(err));
                 }}
               >
                 Sign In
-              </Button>
-              <Button onClick={signInWithGoogle} isGoogleSignIn>
-                Sign In With Google
               </Button>
             </div>
           </form>
