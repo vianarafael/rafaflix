@@ -66,7 +66,7 @@ const Menu = ({ setSearchedFilm, currentUser, history }) => {
       {currentUser ? (
         <Button onClick={() => auth.signOut()}>SIGN OUT</Button>
       ) : (
-        <Button as={Link} className="ButtonLink" to="/videos">
+        <Button as={Link} className="ButtonLink" to="/signin">
           SIGN IN
         </Button>
       )}

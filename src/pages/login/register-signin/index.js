@@ -11,7 +11,7 @@ import Button from '../../../components/Button/button.component';
 
 import { signInWithGoogle } from '../../../firebase/firebase.utils';
 
-const LoginVideo = () => {
+const RegisterSignin = () => {
   const history = useHistory();
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
@@ -143,4 +143,4 @@ const LoginVideo = () => {
   );
 };
 
-export default LoginVideo;
+export default RegisterSignin;

@@ -2,7 +2,7 @@ const INITIAL_STATE = {
   user: null,
 };
 
-const logUser = (state = INITIAL_STATE, action) => {
+const logUserReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'SET_LOGGED_USER':
       return {
@@ -14,4 +14,4 @@ const logUser = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default logUser;
+export default logUserReducer;
