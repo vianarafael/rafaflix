@@ -8,8 +8,7 @@ import Dashboard from '../Dashboard';
 function Signin({ logUser }) {
   return (
     <>
-      {Boolean(sessionStorage.getItem('logged')) ||
-      (logUser && logUser.user) ? (
+      {Boolean(localStorage.getItem('logged')) || (logUser && logUser.user) ? (
         <Dashboard />
       ) : (
         <RegisterSignin />
