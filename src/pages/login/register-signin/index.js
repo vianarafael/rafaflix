@@ -54,10 +54,14 @@ const RegisterSignin = ({ setLogUser }) => {
                       password: loginPW,
                     })
                     .then((res) => {
-                      console.log(res.data);
                       // send the data to the store
                       setLogUser(res.data);
                       localStorage.setItem('logged', 'true');
+                      localStorage.setItem('user', JSON.stringify(res.data[0]));
+                      localStorage.setItem(
+                        'data',
+                        JSON.stringify(res.data.slice(1))
+                      );
                     })
                     .catch((err) => console.log(err));
                 }}
