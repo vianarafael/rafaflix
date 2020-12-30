@@ -6,8 +6,6 @@ import Dashboard from '../Dashboard';
 // import logUser from '../../../redux/logged-user/logged-user.action';
 
 function Signin({ logUser }) {
-  console.log(logUser.user);
-
   return <>{logUser && logUser.user ? <Dashboard /> : <RegisterSignin />}</>;
 }
 

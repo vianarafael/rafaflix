@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -9,10 +8,10 @@ import './style.scss';
 
 import Button from '../../../components/Button/button.component';
 
-import { signInWithGoogle } from '../../../firebase/firebase.utils';
+import { connect } from 'react-redux';
+import { setLogUser } from '../../../redux/logged-user/logged-user.action';
 
-const RegisterSignin = () => {
-  const history = useHistory();
+const RegisterSignin = ({ setLogUser }) => {
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -56,10 +55,8 @@ const RegisterSignin = () => {
                     })
                     .then((res) => {
                       console.log(res.data);
-                      history.push('/');
-                      // save the relevant data
-
-                      // log in button becomes log out
+                      // send the data to the store
+                      setLogUser(res.data);
                     })
                     .catch((err) => console.log(err));
                 }}
@@ -143,4 +140,8 @@ const RegisterSignin = () => {
   );
 };
 
-export default RegisterSignin;
+const mapDispatchToProps = (dispatch) => ({
+  setLogUser: (logUser) => dispatch(setLogUser(logUser)),
+});
+
+export default connect(null, mapDispatchToProps)(RegisterSignin);

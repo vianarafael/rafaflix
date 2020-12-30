@@ -7,6 +7,8 @@ import Button from '../Button/button.component';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { setSearchedFilm } from '../../redux/searched-film/searched-film.action';
+import { logUser } from '../../redux/logged-user/logged-user.reducer';
+import { setLogUser } from '../../redux/logged-user/logged-user.action';
 
 import { withRouter } from 'react-router';
 import { auth } from '../../firebase/firebase.utils';
@@ -33,7 +35,7 @@ const Search = styled.input`
   } */
 `;
 
-const Menu = ({ setSearchedFilm, currentUser, history }) => {
+const Menu = ({ setSearchedFilm, setLogUser, history, logUser }) => {
   const [query, setQuery] = useState('');
   const searchMovie = () => {
     fetch(
@@ -63,8 +65,8 @@ const Menu = ({ setSearchedFilm, currentUser, history }) => {
           onChange={(e) => setQuery(e.target.value)}
         />
       </div>
-      {currentUser ? (
-        <Button onClick={() => auth.signOut()}>SIGN OUT</Button>
+      {logUser.user ? (
+        <Button onClick={() => setLogUser(null)}>SIGN OUT</Button>
       ) : (
         <Button as={Link} className="ButtonLink" to="/signin">
           SIGN IN
@@ -76,8 +78,13 @@ const Menu = ({ setSearchedFilm, currentUser, history }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   setSearchedFilm: (searchedFilm) => dispatch(setSearchedFilm(searchedFilm)),
+  setLogUser: (loggedUser) => dispatch(setLogUser(loggedUser)),
+});
+
+const mapStateToProps = (state) => ({
+  logUser: state.logUser,
 });
 
 const MenuWithRouter = withRouter(Menu);
 
-export default connect(null, mapDispatchToProps)(MenuWithRouter);
+export default connect(mapStateToProps, mapDispatchToProps)(MenuWithRouter);
