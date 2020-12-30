@@ -57,6 +57,7 @@ const RegisterSignin = ({ setLogUser }) => {
                       console.log(res.data);
                       // send the data to the store
                       setLogUser(res.data);
+                      sessionStorage.setItem('logged', 'true');
                     })
                     .catch((err) => console.log(err));
                 }}

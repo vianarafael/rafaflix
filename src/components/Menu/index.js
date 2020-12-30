@@ -65,8 +65,16 @@ const Menu = ({ setSearchedFilm, setLogUser, history, logUser }) => {
           onChange={(e) => setQuery(e.target.value)}
         />
       </div>
-      {logUser.user ? (
-        <Button onClick={() => setLogUser(null)}>SIGN OUT</Button>
+      {Boolean(sessionStorage.getItem('logged')) || logUser.user ? (
+        <Button
+          onClick={() => {
+            sessionStorage.setItem('logged', '');
+            setLogUser(null);
+            console.log(sessionStorage);
+          }}
+        >
+          SIGN OUT
+        </Button>
       ) : (
         <Button as={Link} className="ButtonLink" to="/signin">
           SIGN IN

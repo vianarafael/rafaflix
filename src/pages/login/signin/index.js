@@ -6,7 +6,16 @@ import Dashboard from '../Dashboard';
 // import logUser from '../../../redux/logged-user/logged-user.action';
 
 function Signin({ logUser }) {
-  return <>{logUser && logUser.user ? <Dashboard /> : <RegisterSignin />}</>;
+  return (
+    <>
+      {Boolean(sessionStorage.getItem('logged')) ||
+      (logUser && logUser.user) ? (
+        <Dashboard />
+      ) : (
+        <RegisterSignin />
+      )}
+    </>
+  );
 }
 
 const mapStateToProps = (state) => ({
