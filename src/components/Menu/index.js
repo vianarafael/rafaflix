@@ -69,6 +69,8 @@ const Menu = ({ setSearchedFilm, setLogUser, history, logUser }) => {
         <Button
           onClick={() => {
             localStorage.setItem('logged', '');
+            localStorage.setItem('user', '');
+            localStorage.setItem('data', '');
             setLogUser(null);
           }}
         >
