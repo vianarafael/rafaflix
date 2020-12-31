@@ -33,6 +33,7 @@ function VideoCard({
         onMouseEnter={() => {
           time = setTimeout(() => {
             setSelectedMovie(id);
+
             history.push('./details');
           }, 4000);
         }}
