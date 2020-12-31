@@ -3,15 +3,20 @@ import { connect } from 'react-redux';
 
 const Dashboard = ({ logUser }) => {
   const [movies, setMovies] = useState([]);
-
-  useEffect(() => {
-    logUser.user.slice(1).forEach((movie) => {
-      fetch(
-        `https://api.themoviedb.org/3/movie/${movie.movie_id}?api_key=e576111d75dee905a12167d6f1387f71`
-      )
-        .then((res) => res.json())
-        .then((data) => setMovies([...movies, data]));
-    });
+  console.log(logUser.user.slice(1));
+  useEffect(async () => {
+    if (logUser.user) {
+      const values = await Promise.all(
+        logUser.user
+          .slice(1)
+          .map((value) =>
+            fetch(
+              `https://api.themoviedb.org/3/movie/${value.movie_id}?api_key=e576111d75dee905a12167d6f1387f71`
+            ).then((res) => res.json())
+          )
+      );
+      setMovies(values);
+    }
   }, []);
 
   return (
