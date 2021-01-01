@@ -12,6 +12,7 @@ import Loading from '../../assets/loading.gif';
 const Details = ({ selectedMovie }) => {
   const [details, setDetails] = useState(null);
   const id = selectedMovie.selectedMovie;
+  console.log(id);
   useEffect(() => {
     window.scrollTo(0, 0);
     fetch(
@@ -31,6 +32,20 @@ const Details = ({ selectedMovie }) => {
               url={details.videos.results[0]['key']}
               videoDescription={details.overview}
             />
+            <div
+              style={{
+                textAlign: 'center',
+                fontSize: '3rem',
+                cursor: 'pointer',
+              }}
+            >
+              <i
+                class="fas fa-heart"
+                onClick={() => {
+                  console.log('click');
+                }}
+              ></i>
+            </div>
             <h1 style={{ textAlign: 'center' }}>Cast</h1>
             <Slider>
               {details.credits.cast.map((actor) => {
