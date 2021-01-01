@@ -12,7 +12,6 @@ import Loading from '../../assets/loading.gif';
 const Details = ({ selectedMovie }) => {
   const [details, setDetails] = useState(null);
   const id = selectedMovie.selectedMovie;
-  console.log(id, 'id');
   useEffect(() => {
     window.scrollTo(0, 0);
     fetch(

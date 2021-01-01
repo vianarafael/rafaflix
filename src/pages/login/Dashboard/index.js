@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
 
-const Dashboard = ({ logUser }) => {
+const Dashboard = ({ user }) => {
   const [movies, setMovies] = useState([]);
-  console.log(logUser.user.slice(1));
-  useEffect(async () => {
-    if (logUser.user) {
+  useEffect(() => {
+    let isCancelled = false;
+    async function fetchData() {
       const values = await Promise.all(
-        logUser.user
+        user
           .slice(1)
           .map((value) =>
             fetch(
@@ -15,18 +14,25 @@ const Dashboard = ({ logUser }) => {
             ).then((res) => res.json())
           )
       );
-      setMovies(values);
+      if (!isCancelled) {
+        setMovies(values);
+      }
     }
+    fetchData();
+
+    return () => {
+      isCancelled = true;
+    };
   }, []);
 
   return (
     <>
-      <h1>{logUser.user ? `Welcome ${logUser.user[0].name}` : ''}</h1>
+      <h1>{user ? `Welcome ${user[0].name}` : ''}</h1>
       <h2>Watch List</h2>
       <ul>
         {movies
           ? movies.map((movie) => (
-              <li>
+              <li key={movie.movie_id}>
                 <p>{movie.original_title}</p>
                 <img
                   src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
@@ -39,8 +45,4 @@ const Dashboard = ({ logUser }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  logUser: state.logUser,
-});
-
-export default connect(mapStateToProps)(Dashboard);
+export default Dashboard;

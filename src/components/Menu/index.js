@@ -37,6 +37,7 @@ const Search = styled.input`
 
 const Menu = ({ setSearchedFilm, setLogUser, history, logUser }) => {
   const [query, setQuery] = useState('');
+
   const searchMovie = () => {
     fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=e576111d75dee905a12167d6f1387f71&language=en-US&query=${query}`
@@ -65,13 +66,12 @@ const Menu = ({ setSearchedFilm, setLogUser, history, logUser }) => {
           onChange={(e) => setQuery(e.target.value)}
         />
       </div>
-      {Boolean(localStorage.getItem('logged')) || logUser.user ? (
+      {logUser.user === 'in' ? (
         <Button
           onClick={() => {
-            localStorage.removeItem('logged');
-            localStorage.removeItem('user');
-            localStorage.removeItem('data');
-            setLogUser(null);
+            localStorage.clear();
+            setLogUser('out');
+            history.push('/');
           }}
         >
           SIGN OUT

@@ -1,17 +1,35 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { logUser } from '../../../redux/logged-user/logged-user.action';
+import React, { useState, useEffect } from 'react';
 import RegisterSignin from '../register-signin';
 import Dashboard from '../Dashboard';
-// import logUser from '../../../redux/logged-user/logged-user.action';
 
-function Signin({ logUser }) {
+import { connect } from 'react-redux';
+import { setLogUser } from '../../../redux/logged-user/logged-user.action';
+
+function Signin({ logUser, setLogUser }) {
+  const [user, setUser] = useState();
+
+  const handleSetUser = (data) => {
+    setUser(data);
+    setLogUser('in');
+  };
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem('user');
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+    }
+    if (logUser.user === 'out') {
+      setUser(null);
+    }
+  }, []);
+
   return (
     <>
-      {Boolean(localStorage.getItem('logged')) || (logUser && logUser.user) ? (
-        <Dashboard />
+      {user ? (
+        <Dashboard user={user} />
       ) : (
-        <RegisterSignin />
+        <RegisterSignin handleSetUser={handleSetUser} />
       )}
     </>
   );
@@ -21,4 +39,8 @@ const mapStateToProps = (state) => ({
   logUser: state.logUser,
 });
 
-export default connect(mapStateToProps)(Signin);
+const mapDispatchToProps = (dispatch) => ({
+  setLogUser: (loggedUser) => dispatch(setLogUser(loggedUser)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signin);

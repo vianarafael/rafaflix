@@ -8,10 +8,7 @@ import './style.scss';
 
 import Button from '../../../components/Button/button.component';
 
-import { connect } from 'react-redux';
-import { setLogUser } from '../../../redux/logged-user/logged-user.action';
-
-const RegisterSignin = ({ setLogUser }) => {
+const RegisterSignin = ({ handleSetUser }) => {
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -55,8 +52,8 @@ const RegisterSignin = ({ setLogUser }) => {
                     })
                     .then((res) => {
                       // send the data to the store
-                      setLogUser(res.data);
-                      localStorage.setItem('logged', 'true');
+                      handleSetUser(res.data);
+                      localStorage.setItem('user', res.data);
                       //   localStorage.setItem('user', JSON.stringify(res.data));
                       //   localStorage.setItem(
                       //     'data',
@@ -145,8 +142,4 @@ const RegisterSignin = ({ setLogUser }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  setLogUser: (logUser) => dispatch(setLogUser(logUser)),
-});
-
-export default connect(null, mapDispatchToProps)(RegisterSignin);
+export default RegisterSignin;
