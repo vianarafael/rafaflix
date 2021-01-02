@@ -13,6 +13,8 @@ import Loading from '../../assets/loading.gif';
 const Details = ({ selectedMovie }) => {
   const [details, setDetails] = useState(null);
   const id = selectedMovie.selectedMovie;
+
+  const [message, setMessage] = useState('');
   useEffect(() => {
     window.scrollTo(0, 0);
     fetch(
@@ -46,21 +48,21 @@ const Details = ({ selectedMovie }) => {
                   if (localStorage.user) {
                     // if logged - add film to DB
                     const user = JSON.parse(localStorage.user)[0];
-                    console.log(user.email);
-                    console.log(user.password);
-                    console.log(id);
                     axios
                       .post('http://localhost:5000/users/watchlist/', {
                         email: user.email,
                         password: user.password,
                         movie_id: id,
                       })
-                      .then((res) => console.log(res));
+                      .then((res) =>
+                        setMessage('The movie was added to the Watch List')
+                      );
                   } else {
-                    console.log('you must be logged in');
+                    setMessage('you must be logged in');
                   }
                 }}
               ></i>
+              <p>{message}</p>
             </div>
             <h1 style={{ textAlign: 'center' }}>Cast</h1>
             <Slider>
