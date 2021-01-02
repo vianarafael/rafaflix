@@ -9,10 +9,12 @@
   font-size: 3rem;
   color: #fff;
   margin-left: 1rem;
+  cursor: pointer;
 }
 
-.disapear {
+.disappear {
   visibility: hidden;
+  cursor: none;
 }
 
 @media (max-width: 800px) {

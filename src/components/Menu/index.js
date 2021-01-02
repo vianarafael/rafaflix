@@ -78,14 +78,19 @@ const Menu = ({ setSearchedFilm, setLogUser, history, logUser }) => {
             >
               SIGN OUT
             </Button>
-            <i class="fas fa-user-circle"></i>
+            <i
+              class="fas fa-user-circle"
+              onClick={() => {
+                history.push('/signin');
+              }}
+            ></i>
           </>
         ) : (
           <>
             <Button as={Link} className="ButtonLink" to="/signin">
               SIGN IN
             </Button>
-            <i class="fas fa-user-circle disapear"></i>
+            <i class="fas fa-user-circle disappear"></i>
           </>
         )}
       </div>
