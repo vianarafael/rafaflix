@@ -66,21 +66,29 @@ const Menu = ({ setSearchedFilm, setLogUser, history, logUser }) => {
           onChange={(e) => setQuery(e.target.value)}
         />
       </div>
-      {logUser.user === 'in' || localStorage.user ? (
-        <Button
-          onClick={() => {
-            localStorage.clear();
-            setLogUser('out');
-            history.push('/');
-          }}
-        >
-          SIGN OUT
-        </Button>
-      ) : (
-        <Button as={Link} className="ButtonLink" to="/signin">
-          SIGN IN
-        </Button>
-      )}
+      <div class="log-dashboard">
+        {logUser.user === 'in' || localStorage.user ? (
+          <>
+            <Button
+              onClick={() => {
+                localStorage.clear();
+                setLogUser('out');
+                history.push('/');
+              }}
+            >
+              SIGN OUT
+            </Button>
+            <i class="fas fa-user-circle"></i>
+          </>
+        ) : (
+          <>
+            <Button as={Link} className="ButtonLink" to="/signin">
+              SIGN IN
+            </Button>
+            <i class="fas fa-user-circle disapear"></i>
+          </>
+        )}
+      </div>
     </nav>
   );
 };
