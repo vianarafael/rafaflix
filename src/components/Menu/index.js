@@ -66,7 +66,7 @@ const Menu = ({ setSearchedFilm, setLogUser, history, logUser }) => {
           onChange={(e) => setQuery(e.target.value)}
         />
       </div>
-      {logUser.user === 'in' ? (
+      {logUser.user === 'in' || localStorage.user ? (
         <Button
           onClick={() => {
             localStorage.clear();
