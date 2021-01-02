@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import BannerMain from '../BannerMain';
 import PageDefault from '../pageDefault';
@@ -12,7 +13,6 @@ import Loading from '../../assets/loading.gif';
 const Details = ({ selectedMovie }) => {
   const [details, setDetails] = useState(null);
   const id = selectedMovie.selectedMovie;
-  console.log(id);
   useEffect(() => {
     window.scrollTo(0, 0);
     fetch(
@@ -42,7 +42,23 @@ const Details = ({ selectedMovie }) => {
               <i
                 class="fas fa-heart"
                 onClick={() => {
-                  console.log('click');
+                  // check if logged in
+                  if (localStorage.user) {
+                    // if logged - add film to DB
+                    const user = JSON.parse(localStorage.user)[0];
+                    console.log(user.email);
+                    console.log(user.password);
+                    console.log(id);
+                    axios
+                      .post('http://localhost:5000/users/watchlist/', {
+                        email: user.email,
+                        password: user.password,
+                        movie_id: id,
+                      })
+                      .then((res) => console.log(res));
+                  } else {
+                    console.log('you must be logged in');
+                  }
                 }}
               ></i>
             </div>

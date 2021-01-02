@@ -44,7 +44,6 @@ const RegisterSignin = ({ handleSetUser }) => {
                 type="submit"
                 onClick={(e) => {
                   e.preventDefault();
-                  // console.log(loginEmail, loginPW);
                   axios
                     .post('http://localhost:5000/users/login', {
                       email: loginEmail,
@@ -53,12 +52,7 @@ const RegisterSignin = ({ handleSetUser }) => {
                     .then((res) => {
                       // send the data to the store
                       handleSetUser(res.data);
-                      localStorage.setItem('user', res.data);
-                      //   localStorage.setItem('user', JSON.stringify(res.data));
-                      //   localStorage.setItem(
-                      //     'data',
-                      //     JSON.stringify(res.data.slice(1))
-                      //   );
+                      localStorage.setItem('user', JSON.stringify(res.data));
                     })
                     .catch((err) => console.log(err));
                 }}
