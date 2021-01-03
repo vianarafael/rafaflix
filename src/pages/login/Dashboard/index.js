@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './style.scss';
 
+import axios from 'axios';
+
 import VideoCard from '../../../components/Carousel/components/VideoCard';
 import Slider, {
   SliderItem,
 } from '../../../components/Carousel/components/Slider';
 
-const Dashboard = ({ user }) => {
+const Dashboard = ({ user, handleSetUser }) => {
   const [films, setFilms] = useState([]);
   useEffect(() => {
     let isCancelled = false;
@@ -48,8 +50,25 @@ const Dashboard = ({ user }) => {
                   <span
                     className="remove"
                     onClick={() => {
-                      console.log('remove');
-                      // watched
+                      // console.log(film.id);
+                      // console.log(user[0]);
+                      axios
+                        .post('http://localhost:5000/users/watchlist/remove', {
+                          user_id: user[0].id,
+                          email: user[0].email,
+                          password: user[0].password,
+                          movie_id: film.id,
+                        })
+                        .then((res) => {
+                          localStorage.setItem(
+                            'user',
+                            JSON.stringify(res.data)
+                          );
+                          setFilms(res.data);
+                          handleSetUser(res.data);
+                          // horrible hack - fix that ASAP
+                          window.location.reload();
+                        });
                     }}
                   >
                     <i class="fa fa-trash" aria-hidden="true"></i>

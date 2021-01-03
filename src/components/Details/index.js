@@ -62,7 +62,6 @@ const Details = ({ selectedMovie }) => {
                             JSON.stringify(res.data)
                           );
                         }
-                        //## show the movies updated on dashboard
                       );
                   } else {
                     setMessage('you must be logged in');

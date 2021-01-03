@@ -27,7 +27,7 @@ function Signin({ logUser, setLogUser }) {
   return (
     <>
       {user ? (
-        <Dashboard user={user} />
+        <Dashboard user={user} handleSetUser={handleSetUser} />
       ) : (
         <RegisterSignin handleSetUser={handleSetUser} />
       )}
