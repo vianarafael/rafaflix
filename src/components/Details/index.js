@@ -54,8 +54,10 @@ const Details = ({ selectedMovie }) => {
                         password: user.password,
                         movie_id: id,
                       })
-                      .then((res) =>
-                        setMessage('The movie was added to the Watch List')
+                      .then(
+                        (res) =>
+                          setMessage('The movie was added to the Watch List')
+                        //## show the movies updated on dashboard
                       );
                   } else {
                     setMessage('you must be logged in');

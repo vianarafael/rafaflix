@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
+import VideoCard from '../../../components/Carousel/components/VideoCard';
+import Slider, {
+  SliderItem,
+} from '../../../components/Carousel/components/Slider';
+
 const Dashboard = ({ user }) => {
-  const [movies, setMovies] = useState([]);
+  const [films, setFilms] = useState([]);
   useEffect(() => {
     let isCancelled = false;
     async function fetchData() {
@@ -15,7 +20,7 @@ const Dashboard = ({ user }) => {
           )
       );
       if (!isCancelled) {
-        setMovies(values);
+        setFilms(values);
       }
     }
     fetchData();
@@ -29,18 +34,23 @@ const Dashboard = ({ user }) => {
     <>
       <h1>{user ? `Welcome ${user[0].name}` : ''}</h1>
       <h2>Watch List</h2>
-      <ul>
-        {movies
-          ? movies.map((movie) => (
-              <li key={movie.movie_id}>
-                <p>{movie.original_title}</p>
-                <img
-                  src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+      <Slider noRepeat>
+        {films
+          ? films.map((film) => (
+              <SliderItem key={film.original_title}>
+                <VideoCard
+                  id={film.id}
+                  videoTitle={film.original_title}
+                  // genres={film.genre_ids.map(
+                  //   (genre_id) => genreConverter[genre_id]
+                  // )}
+                  poster={film.poster_path}
+                  // categoryColor={categoryColor}
                 />
-              </li>
+              </SliderItem>
             ))
           : ''}
-      </ul>
+      </Slider>
     </>
   );
 };

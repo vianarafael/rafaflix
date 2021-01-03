@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from "react";
-import SlickSlider from "react-slick";
-import styled from "styled-components";
+import React from 'react';
+import SlickSlider from 'react-slick';
+import styled from 'styled-components';
 
 const Container = styled.ul`
   padding: 0;
@@ -46,27 +46,35 @@ function SamplePrevArrow(props) {
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", background: "green" }}
+      style={{ ...style, display: 'block', background: 'green' }}
       onClick={onClick}
     />
   );
 }
 
-const Slider = ({ children }) => (
-  <Container>
-    <SlickSlider
-      {...{
-        dots: false,
-        infinite: true,
-        speed: 300,
-        centerMode: false,
-        variableWidth: true,
-        adaptiveHeight: true,
-      }}
-    >
-      {children}
-    </SlickSlider>
-  </Container>
-);
+const Slider = ({ children, noRepeat }) => {
+  let infinite;
+  if (noRepeat) {
+    infinite = false;
+  } else {
+    infinite = true;
+  }
+  return (
+    <Container>
+      <SlickSlider
+        {...{
+          dots: false,
+          infinite,
+          speed: 300,
+          centerMode: false,
+          variableWidth: true,
+          adaptiveHeight: true,
+        }}
+      >
+        {children}
+      </SlickSlider>
+    </Container>
+  );
+};
 
 export default Slider;

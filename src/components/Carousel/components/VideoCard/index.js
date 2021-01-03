@@ -17,11 +17,13 @@ function VideoCard({
 }) {
   let genresString = '';
 
-  for (let i = 0; i < 2; i++) {
-    genresString += genres[i];
-    if (genres.length === 1) break;
-    if (i < 1) {
-      genresString += ' | ';
+  if (genres) {
+    for (let i = 0; i < 2; i++) {
+      genresString += genres[i];
+      if (genres.length === 1) break;
+      if (i < 1) {
+        genresString += ' | ';
+      }
     }
   }
   let time;
@@ -30,16 +32,16 @@ function VideoCard({
     <>
       <p style={{ 'text-align': 'center' }}>{genresString}</p>
       <VideoCardContainer
-        onMouseEnter={() => {
-          time = setTimeout(() => {
-            setSelectedMovie(id);
+        // onMouseEnter={() => {
+        //   time = setTimeout(() => {
+        //     setSelectedMovie(id);
 
-            history.push('./details');
-          }, 4000);
-        }}
-        onMouseLeave={() => {
-          clearTimeout(time);
-        }}
+        //     history.push('./details');
+        //   }, 4000);
+        // }}
+        // onMouseLeave={() => {
+        //   clearTimeout(time);
+        // }}
         onClick={() => {
           setSelectedMovie(id);
           history.push('./details');
