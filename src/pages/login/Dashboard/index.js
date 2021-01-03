@@ -52,7 +52,8 @@ const Dashboard = ({ user }) => {
                       // watched
                     }}
                   >
-                    Remove
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    {' Remove'}
                   </span>
                 </h4>
               </SliderItem>
