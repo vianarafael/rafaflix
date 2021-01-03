@@ -41,12 +41,10 @@ const Dashboard = ({ user }) => {
                 <VideoCard
                   id={film.id}
                   videoTitle={film.original_title}
-                  // genres={film.genre_ids.map(
-                  //   (genre_id) => genreConverter[genre_id]
-                  // )}
                   poster={film.poster_path}
-                  // categoryColor={categoryColor}
                 />
+                {/*## Add those functionalities */}
+                <h6>Watched | Delete</h6>
               </SliderItem>
             ))
           : ''}
