@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './style.scss';
 
 import VideoCard from '../../../components/Carousel/components/VideoCard';
 import Slider, {
@@ -43,8 +44,17 @@ const Dashboard = ({ user }) => {
                   videoTitle={film.original_title}
                   poster={film.poster_path}
                 />
-                {/*## Add those functionalities */}
-                <h6>Watched | Delete</h6>
+                <h4 className="remove-container">
+                  <span
+                    className="remove"
+                    onClick={() => {
+                      console.log('remove');
+                      // watched
+                    }}
+                  >
+                    Remove
+                  </span>
+                </h4>
               </SliderItem>
             ))
           : ''}

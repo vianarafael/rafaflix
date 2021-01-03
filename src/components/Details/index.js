@@ -55,8 +55,13 @@ const Details = ({ selectedMovie }) => {
                         movie_id: id,
                       })
                       .then(
-                        (res) =>
-                          setMessage('The movie was added to the Watch List')
+                        (res) => {
+                          setMessage('The movie was added to the Watch List');
+                          localStorage.setItem(
+                            'user',
+                            JSON.stringify(res.data)
+                          );
+                        }
                         //## show the movies updated on dashboard
                       );
                   } else {
