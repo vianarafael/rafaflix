@@ -54,15 +54,12 @@ const Details = ({ selectedMovie }) => {
                         password: user.password,
                         movie_id: id,
                       })
-                      .then(
-                        (res) => {
-                          setMessage('The movie was added to the Watch List');
-                          localStorage.setItem(
-                            'user',
-                            JSON.stringify(res.data)
-                          );
-                        }
-                      );
+                      .then((res) => {
+                        console.log('film added');
+                        setMessage('The movie was added to the Watch List');
+                        localStorage.setItem('user', JSON.stringify(res.data));
+                      })
+                      .catch((err) => console.log(err));
                   } else {
                     setMessage('you must be logged in');
                   }

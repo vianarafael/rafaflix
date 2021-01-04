@@ -81,8 +81,6 @@ const RegisterSignin = ({ handleSetUser }) => {
             <FormInput
               type="email"
               name="email"
-              // value={email}
-              // onChange={this.handleChange}
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
@@ -92,8 +90,6 @@ const RegisterSignin = ({ handleSetUser }) => {
             <FormInput
               type="password"
               name="password"
-              // value={password}
-              // onChange={this.handleChange}
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
@@ -103,8 +99,6 @@ const RegisterSignin = ({ handleSetUser }) => {
             <FormInput
               type="password"
               name="confirmPassword"
-              // value={confirmPassword}
-              // onChange={this.handleChange}
               onChange={(e) => {
                 setPassword2(e.target.value);
               }}
@@ -115,7 +109,7 @@ const RegisterSignin = ({ handleSetUser }) => {
               type="submit"
               onClick={(e) => {
                 e.preventDefault();
-                // connect to the server
+
                 axios
                   .post('http://localhost:5000/users/register', {
                     name: userName,

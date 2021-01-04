@@ -50,8 +50,6 @@ const Dashboard = ({ user, handleSetUser }) => {
                   <span
                     className="remove"
                     onClick={() => {
-                      // console.log(film.id);
-                      // console.log(user[0]);
                       axios
                         .post('http://localhost:5000/users/watchlist/remove', {
                           user_id: user[0].id,
