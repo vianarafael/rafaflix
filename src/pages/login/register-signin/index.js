@@ -61,6 +61,7 @@ const RegisterSignin = ({ handleSetUser }) => {
               </Button>
             </div>
           </form>
+          <h4>Blablabla</h4>
         </div>
 
         <div className="sign-up">
@@ -70,8 +71,6 @@ const RegisterSignin = ({ handleSetUser }) => {
             <FormInput
               type="text"
               name="displayName"
-              // value={displayName}
-              // onChange={this.handleChange}
               onChange={(e) => {
                 setUserName(e.target.value);
               }}
@@ -124,6 +123,7 @@ const RegisterSignin = ({ handleSetUser }) => {
               SIGN UP
             </Button>
           </form>
+          <h4>Blablabla</h4>
         </div>
       </div>
     </>
