@@ -17,6 +17,9 @@ const RegisterSignin = ({ handleSetUser }) => {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPW, setLoginPW] = useState('');
 
+  const [msg, setMsg] = useState('');
+  const [registerMsg, setRegisterMsg] = useState('');
+
   return (
     <>
       <div className="container">
@@ -54,14 +57,14 @@ const RegisterSignin = ({ handleSetUser }) => {
                       handleSetUser(res.data);
                       localStorage.setItem('user', JSON.stringify(res.data));
                     })
-                    .catch((err) => console.log(err));
+                    .catch((err) => setMsg('Wrong user name or password'));
                 }}
               >
                 Sign In
               </Button>
             </div>
           </form>
-          <h4>Blablabla</h4>
+          <h4>{msg}</h4>
         </div>
 
         <div className="sign-up">
@@ -116,14 +119,14 @@ const RegisterSignin = ({ handleSetUser }) => {
                     password,
                     password2,
                   })
-                  .then((res) => console.log(res.data))
+                  .then((res) => setRegisterMsg(res.data))
                   .catch((err) => console.log(err));
               }}
             >
               SIGN UP
             </Button>
           </form>
-          <h4>Blablabla</h4>
+          <h4>{registerMsg}</h4>
         </div>
       </div>
     </>

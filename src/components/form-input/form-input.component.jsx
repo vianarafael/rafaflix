@@ -3,9 +3,7 @@ import React, { useRef } from 'react';
 import './form-input.styles.scss';
 const FormInput = ({ handleChange, label, ...otherProps }) => {
   const inputEl = useRef(null);
-  if (inputEl.current) {
-    console.log(inputEl.current.value);
-  }
+
   return (
     <div className="group">
       <input
