@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import './details.scss';
+
 import BannerMain from '../BannerMain';
 import PageDefault from '../pageDefault';
 import { connect } from 'react-redux';
@@ -55,7 +57,6 @@ const Details = ({ selectedMovie }) => {
                         movie_id: id,
                       })
                       .then((res) => {
-                        console.log('film added');
                         setMessage('The movie was added to the Watch List');
                         localStorage.setItem('user', JSON.stringify(res.data));
                       })
@@ -65,7 +66,7 @@ const Details = ({ selectedMovie }) => {
                   }
                 }}
               ></i>
-              <p>{message}</p>
+              <h6 className="msg">{message || <span>&nbsp;&nbsp;</span>}</h6>
             </div>
             <h1 style={{ textAlign: 'center' }}>Cast</h1>
             <Slider>
@@ -77,7 +78,6 @@ const Details = ({ selectedMovie }) => {
                       name={actor.name}
                       character={actor.character}
                       img={actor.profile_path}
-                      // , actor.character, actor.profile_path
                     />
                   </SliderItem>
                 );

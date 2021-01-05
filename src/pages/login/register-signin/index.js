@@ -18,7 +18,7 @@ const RegisterSignin = ({ handleSetUser }) => {
   const [loginPW, setLoginPW] = useState('');
 
   const [msg, setMsg] = useState('');
-  const [registerMsg, setRegisterMsg] = useState('');
+  const [registerMsg, setRegisterMsg] = useState([]);
 
   return (
     <>
@@ -64,7 +64,7 @@ const RegisterSignin = ({ handleSetUser }) => {
               </Button>
             </div>
           </form>
-          <h4>{msg}</h4>
+          <h4 className="err-msg">{msg}</h4>
         </div>
 
         <div className="sign-up">
@@ -119,14 +119,21 @@ const RegisterSignin = ({ handleSetUser }) => {
                     password,
                     password2,
                   })
-                  .then((res) => setRegisterMsg(res.data))
+                  .then((res) => {
+                    console.log(res.data);
+                    setRegisterMsg(res.data);
+                  })
                   .catch((err) => console.log(err));
               }}
             >
               SIGN UP
             </Button>
           </form>
-          <h4>{registerMsg}</h4>
+          <div className="err-msg">
+            {registerMsg.map((message) => (
+              <h4>{message}</h4>
+            ))}
+          </div>
         </div>
       </div>
     </>
