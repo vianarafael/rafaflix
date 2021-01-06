@@ -57,9 +57,9 @@ const Menu = ({ setSearchedFilm, setLogUser, history, logUser }) => {
         onFocus={() => {
           console.log('if mobile make the thing go up');
         }}
-        onKeyPress={(e) => {
+        onBlur={(e) => {
           // enter is 13
-          setTest(e.charCode);
+          setTest(`things go back to their place & ${e.target.value}`);
         }}
       >
         <Button
