@@ -17,12 +17,6 @@
   cursor: none;
 }
 
-@media (max-width: 800px) {
-  .Logo {
-    max-width: 105px;
-  }
-}
-
 .Menu {
   width: 100%;
   height: 94px;
@@ -97,4 +91,19 @@ body {
 
 input:focus {
   outline: 0;
+}
+
+@media (max-width: 480px) {
+  .searchbox {
+    display: none;
+  }
+  .Menu {
+    height: 5rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .Logo {
+    margin-top: 4rem;
+  }
 }
