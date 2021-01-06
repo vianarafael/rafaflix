@@ -56,7 +56,6 @@ const Menu = ({ setSearchedFilm, setLogUser, history, logUser }) => {
           console.log('if mobile make the thing go up');
         }}
         onBlur={(e) => {
-          setTest(`things go back to their place & ${e.target.value}`);
           setQuery(e.target.value);
 
           searchMovie();
