@@ -37,6 +37,7 @@ const Search = styled.input`
 
 const Menu = ({ setSearchedFilm, setLogUser, history, logUser }) => {
   const [query, setQuery] = useState('');
+  const [test, setTest] = useState('');
 
   const searchMovie = () => {
     fetch(
@@ -50,7 +51,17 @@ const Menu = ({ setSearchedFilm, setLogUser, history, logUser }) => {
       <Link to="/">
         <img className="Logo" src={Logo} alt="Rafaflix logo" />
       </Link>
-      <div className="searchbox">
+      <div style={{ color: 'white' }}>{test}</div>
+      <div
+        className="searchbox"
+        onFocus={() => {
+          console.log('if mobile make the thing go up');
+        }}
+        onKeyPress={(e) => {
+          // enter is 13
+          setTest(e.charCode);
+        }}
+      >
         <Button
           onClick={() => {
             searchMovie();
