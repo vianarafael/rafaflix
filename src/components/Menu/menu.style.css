@@ -5,6 +5,11 @@
   display: flex;
   /* justify-content: flex-end; */
 }
+
+.searcbox-mobile {
+  display: none;
+}
+
 .fa-user-circle {
   font-size: 3rem;
   color: #fff;
@@ -94,16 +99,35 @@ input:focus {
 }
 
 @media (max-width: 480px) {
-  .searchbox {
-    display: none;
-  }
   .Menu {
-    height: 5rem;
-    padding: 0;
+    height: 8rem;
     display: flex;
     flex-direction: column;
+    border: none;
   }
   .Logo {
-    margin-top: 4rem;
+    margin-top: 2.5rem;
+  }
+
+  .searchbox {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .searchbox input {
+    width: 100%;
+  }
+
+  .searchbox button {
+    display: none;
+  }
+
+  .searchbox input {
+    border-radius: 30px;
+  }
+
+  .fa-user-circle {
+    display: none;
   }
 }

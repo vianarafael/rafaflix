@@ -66,6 +66,7 @@ const Menu = ({ setSearchedFilm, setLogUser, history, logUser }) => {
           onChange={(e) => setQuery(e.target.value)}
         />
       </div>
+
       <div class="log-dashboard">
         {logUser.user === 'in' || localStorage.user ? (
           <>
