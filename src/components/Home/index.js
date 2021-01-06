@@ -3,6 +3,8 @@ import PageDefault from '../pageDefault';
 import Carousel from '../Carousel';
 import BannerMain from '../BannerMain';
 
+import './home.styles.scss';
+
 import { connect } from 'react-redux';
 
 function Home({ searchedFilm }) {
@@ -59,7 +61,7 @@ function Home({ searchedFilm }) {
     // />
     // )}
     <>
-      <div style={{ background: '#141414' }}>
+      <div className="home-container" style={{ background: '#141414' }}>
         {searchedFilm.searchedFilm ? (
           <Carousel
             color={'red'}
