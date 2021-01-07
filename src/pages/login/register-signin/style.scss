@@ -82,3 +82,16 @@ button {
   color: red;
   max-width: 262px;
 }
+
+@media (max-width: 480px) {
+  .container {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sign-in,
+  .sign-up {
+    padding: 2rem;
+  }
+}
