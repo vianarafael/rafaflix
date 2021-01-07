@@ -11,7 +11,6 @@ import { setSearchedFilm } from '../../redux/searched-film/searched-film.action'
 import { setLogUser } from '../../redux/logged-user/logged-user.action';
 
 import { withRouter } from 'react-router';
-import { auth } from '../../firebase/firebase.utils';
 
 const Search = styled.input`
   color: var(--white);
@@ -43,7 +42,9 @@ const Menu = ({ setSearchedFilm, setLogUser, history, logUser }) => {
       `https://api.themoviedb.org/3/search/movie?api_key=e576111d75dee905a12167d6f1387f71&language=en-US&query=${query}`
     )
       .then((res) => res.json())
-      .then((res) => setSearchedFilm(res));
+      .then((res) => {
+        setSearchedFilm(res);
+      });
   };
   return (
     <nav className="Menu">
@@ -56,11 +57,12 @@ const Menu = ({ setSearchedFilm, setLogUser, history, logUser }) => {
           console.log('if mobile make the thing go up');
         }}
         onBlur={(e) => {
-          setQuery(e.target.value);
-
-          searchMovie();
-          setQuery('');
-          history.push('/');
+          if (window.innerWidth <= 480) {
+            setQuery(e.target.value);
+            searchMovie();
+            setQuery('');
+            history.push('/');
+          }
         }}
       >
         <Button
@@ -75,7 +77,9 @@ const Menu = ({ setSearchedFilm, setLogUser, history, logUser }) => {
         <Search
           placeholder="Search..."
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => {
+            setQuery(e.target.value);
+          }}
         />
       </div>
       <div class="log-dashboard">

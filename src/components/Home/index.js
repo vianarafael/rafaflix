@@ -15,9 +15,9 @@ function Home({ searchedFilm }) {
 
   const [genres, setGenres] = useState([]);
 
-  // useEffect(() => {
-  //   console.log(searchedFilm.searchedFilm);
-  // }, [searchedFilm]);
+  useEffect(() => {
+    console.log(searchedFilm.searchedFilm);
+  }, [searchedFilm]);
 
   useEffect(() => {
     fetch(
@@ -51,19 +51,11 @@ function Home({ searchedFilm }) {
       .then((res) => setGenres(res.results));
   }, [setNowPlaying, setPopular, setTopRated, setUpcoming, setGenres]);
   return (
-    // searchedFilm.searchedFilm.results
-    // {searchedFilm ? (
-    //   <Carousel
-    //   color={"#00c86f"}
-    //   title="Search Results"
-    //   films={popular}
-    //   genre_ids={popular.genre_ids}
-    // />
-    // )}
     <>
       <div className="home-container" style={{ background: '#141414' }}>
         {searchedFilm.searchedFilm ? (
           <Carousel
+            className
             color={'red'}
             title="Search Results"
             films={searchedFilm.searchedFilm.results}
@@ -72,7 +64,6 @@ function Home({ searchedFilm }) {
         ) : (
           <BannerMain
             videoTitle="Composing Movement"
-            // url={dadosIniciais.categorias[0].videos[0].url}
             url={'https://www.youtube.com/watch?v=doaQC-S8de8'}
             videoDescription={
               'Can movement tell a story? Sure, if you’re as gifted as Akira Kurosawa. More than any other filmmaker, he had an innate understanding of movement and how to capture it onscreen. Join me today in studying the master, possibly the greatest composer of motion in film history.'
