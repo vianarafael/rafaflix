@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import VideoIframeResponsive from './components/VideoIframeResponsive';
 import {
   BannerMainContainer,
@@ -14,6 +15,7 @@ function getYouTubeId(youtubeURL) {
 }
 
 export default function BannerMain({ videoTitle, videoDescription, url }) {
+  const history = useHistory();
   const youTubeID = getYouTubeId(url);
   // const youTubeID = url;
   const bgUrl = `https://img.youtube.com/vi/${youTubeID}/maxresdefault.jpg`;
@@ -31,7 +33,13 @@ export default function BannerMain({ videoTitle, videoDescription, url }) {
 
         <ContentAreaContainer.Item>
           <VideoIframeResponsive youtubeID={youTubeID} />
-          <WatchButton>Watch Trailer</WatchButton>
+          <WatchButton>
+            <a
+              href={`https://www.youtube.com/embed/${youTubeID}?autoplay=0&mute=1`}
+            >
+              Watch Trailer
+            </a>
+          </WatchButton>
         </ContentAreaContainer.Item>
       </ContentAreaContainer>
     </BannerMainContainer>
