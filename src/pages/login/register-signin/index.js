@@ -48,10 +48,13 @@ const RegisterSignin = ({ handleSetUser }) => {
                 onClick={(e) => {
                   e.preventDefault();
                   axios
-                    .post('http://rafaflix-staging.herokuapp.com/users/login', {
-                      email: loginEmail,
-                      password: loginPW,
-                    })
+                    .post(
+                      'https://rafaflix-staging.herokuapp.com/users/login',
+                      {
+                        email: loginEmail,
+                        password: loginPW,
+                      }
+                    )
                     .then((res) => {
                       // send the data to the store
                       handleSetUser(res.data);
@@ -114,7 +117,7 @@ const RegisterSignin = ({ handleSetUser }) => {
 
                 axios
                   .post(
-                    'http://rafaflix-staging.herokuapp.com/users/register',
+                    'https://rafaflix-staging.herokuapp.com/users/register',
                     {
                       name: userName,
                       email,

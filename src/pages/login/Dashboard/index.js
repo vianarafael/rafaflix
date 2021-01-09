@@ -52,7 +52,7 @@ const Dashboard = ({ user, handleSetUser }) => {
                     onClick={() => {
                       axios
                         .post(
-                          'http://rafaflix-staging.herokuapp.com/users/watchlist/remove',
+                          'https://rafaflix-staging.herokuapp.com/users/watchlist/remove',
                           {
                             user_id: user[0].id,
                             email: user[0].email,
