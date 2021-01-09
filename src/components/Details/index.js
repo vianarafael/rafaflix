@@ -52,7 +52,7 @@ const Details = ({ selectedMovie }) => {
                     const user = JSON.parse(localStorage.user)[0];
                     axios
                       .post(
-                        'https://rafaflix-staging.herokuapp.com/users/watchlist/',
+                        'http://rafaflix-staging.herokuapp.com/users/watchlist/',
                         {
                           email: user.email,
                           password: user.password,
