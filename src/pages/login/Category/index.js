@@ -25,12 +25,12 @@ const Category = () => {
     setValue(e.target.getAttribute('name'), e.target.value);
   };
 
-  useEffect(() => {
-    const URL = 'http://localhost:8080/category';
-    fetch(URL)
-      .then((res) => res.json())
-      .then((res) => console.log(res));
-  }, []);
+  // useEffect(() => {
+  //   const URL = 'http://localhost:8080/category';
+  //   fetch(URL)
+  //     .then((res) => res.json())
+  //     .then((res) => console.log(res));
+  // }, []);
 
   return (
     <PageDefault>

@@ -51,12 +51,15 @@ const Dashboard = ({ user, handleSetUser }) => {
                     className="remove"
                     onClick={() => {
                       axios
-                        .post('http://localhost:5000/users/watchlist/remove', {
-                          user_id: user[0].id,
-                          email: user[0].email,
-                          password: user[0].password,
-                          movie_id: film.id,
-                        })
+                        .post(
+                          'https://rafaflix-staging.herokuapp.com/users/watchlist/remove',
+                          {
+                            user_id: user[0].id,
+                            email: user[0].email,
+                            password: user[0].password,
+                            movie_id: film.id,
+                          }
+                        )
                         .then((res) => {
                           localStorage.setItem(
                             'user',

@@ -51,11 +51,14 @@ const Details = ({ selectedMovie }) => {
                     // if logged - add film to DB
                     const user = JSON.parse(localStorage.user)[0];
                     axios
-                      .post('http://localhost:5000/users/watchlist/', {
-                        email: user.email,
-                        password: user.password,
-                        movie_id: id,
-                      })
+                      .post(
+                        'https://rafaflix-staging.herokuapp.com/users/watchlist/',
+                        {
+                          email: user.email,
+                          password: user.password,
+                          movie_id: id,
+                        }
+                      )
                       .then((res) => {
                         setMessage('The movie was added to the Watch List');
                         localStorage.setItem('user', JSON.stringify(res.data));
