@@ -18,7 +18,6 @@ const RegisterSignin = ({ handleSetUser }) => {
   const [loginPW, setLoginPW] = useState('');
 
   const [msg, setMsg] = useState('');
-  const [registerMsg, setRegisterMsg] = useState([]);
 
   return (
     <>
@@ -56,8 +55,8 @@ const RegisterSignin = ({ handleSetUser }) => {
                     )
                     .then((res) => {
                       // send the data to the store
-                      console.log('signing in ', res.data)
                       handleSetUser(res.data);
+                      // and the local storage
                       localStorage.setItem('user', JSON.stringify(res.data));
                     })
                     .catch((err) => setMsg('Wrong user name or password'));
@@ -115,9 +114,9 @@ const RegisterSignin = ({ handleSetUser }) => {
               onClick={(e) => {
                 e.preventDefault();
 
-                axios
+                api
                   .post(
-                    'https://rafaflix-staging.herokuapp.com/users/register',
+                    '/signup',
                     {
                       name: userName,
                       email,
@@ -126,8 +125,10 @@ const RegisterSignin = ({ handleSetUser }) => {
                     }
                   )
                   .then((res) => {
-                    console.log(res.data);
-                    setRegisterMsg(res.data);
+                      // send the data to the store
+                      handleSetUser(res.data);
+                      // and the local storage
+                      localStorage.setItem('user', JSON.stringify(res.data));
                   })
                   .catch((err) => console.log(err));
               }}
@@ -136,9 +137,7 @@ const RegisterSignin = ({ handleSetUser }) => {
             </Button>
           </form>
           <div className="err-msg">
-            {registerMsg.map((message) => (
-              <h4>{message}</h4>
-            ))}
+            
           </div>
         </div>
       </div>
