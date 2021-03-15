@@ -20,7 +20,7 @@ const Details = ({ selectedMovie }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
     fetch(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=e576111d75dee905a12167d6f1387f71&append_to_response=videos,credits`
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_KEY}&append_to_response=videos,credits`
     )
       .then((res) => res.json())
       .then((res) => setDetails(res));

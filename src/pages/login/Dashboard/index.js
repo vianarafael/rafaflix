@@ -23,7 +23,7 @@ const Dashboard = () => {
       })
       const watchList = await Promise.all(movies.data.map(async ({ movie_id }) => {
   
-        const result = await axios.get(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=e576111d75dee905a12167d6f1387f71`)
+        const result = await axios.get(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.REACT_APP_KEY}`)
         return result.data
       }))
 
@@ -33,25 +33,6 @@ const Dashboard = () => {
     }
     fetchData()
     
-    // async function fetchData() {
-    //   const values = await Promise.all(
-    //     user
-    //       .slice(1)
-    //       .map((value) =>
-    //         fetch(
-    //           `https://api.themoviedb.org/3/movie/${value.movie_id}?api_key=e576111d75dee905a12167d6f1387f71`
-    //         ).then((res) => res.json())
-    //       )
-    //   );
-    //   if (!isCancelled) {
-    //     setFilms(values);
-    //   }
-    // }
-    // fetchData();
-
-    // return () => {
-    //   isCancelled = true;
-    // };
   }, [films]);
 
   const removeFilm = async (e) => {

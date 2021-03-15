@@ -11,7 +11,7 @@ const Actor = ({ selectedActor }) => {
 
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/person/${id}?api_key=e576111d75dee905a12167d6f1387f71&language=en-US`
+      `https://api.themoviedb.org/3/person/${id}?api_key=${process.env.REACT_APP_KEY}&language=en-US`
     )
       .then((res) => res.json())
       .then((res) => setActor(res));
