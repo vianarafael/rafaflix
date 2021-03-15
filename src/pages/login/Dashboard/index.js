@@ -10,32 +10,33 @@ import Slider, {
 
 const Dashboard = ({ user, handleSetUser }) => {
   const [films, setFilms] = useState([]);
-  useEffect(() => {
-    let isCancelled = false;
-    async function fetchData() {
-      const values = await Promise.all(
-        user
-          .slice(1)
-          .map((value) =>
-            fetch(
-              `https://api.themoviedb.org/3/movie/${value.movie_id}?api_key=e576111d75dee905a12167d6f1387f71`
-            ).then((res) => res.json())
-          )
-      );
-      if (!isCancelled) {
-        setFilms(values);
-      }
-    }
-    fetchData();
+  // useEffect(() => {
+  //   let isCancelled = false;
+  //   async function fetchData() {
+  //     const values = await Promise.all(
+  //       user
+  //         .slice(1)
+  //         .map((value) =>
+  //           fetch(
+  //             `https://api.themoviedb.org/3/movie/${value.movie_id}?api_key=e576111d75dee905a12167d6f1387f71`
+  //           ).then((res) => res.json())
+  //         )
+  //     );
+  //     if (!isCancelled) {
+  //       setFilms(values);
+  //     }
+  //   }
+  //   fetchData();
 
-    return () => {
-      isCancelled = true;
-    };
-  }, []);
+  //   return () => {
+  //     isCancelled = true;
+  //   };
+  // }, []);
 
   return (
     <>
-      <h1>{user ? `Welcome ${user[0].name}` : ''}</h1>
+      <h1>sup?</h1>
+      {/* <h1>{user ? `Welcome ${user[0].name}` : ''}</h1>
       <h2>Watch List</h2>
       <Slider noRepeat>
         {films
@@ -79,7 +80,7 @@ const Dashboard = ({ user, handleSetUser }) => {
               </SliderItem>
             ))
           : ''}
-      </Slider>
+      </Slider> */}
     </>
   );
 };

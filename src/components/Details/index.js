@@ -4,7 +4,7 @@ import axios from 'axios';
 import './details.scss';
 
 import BannerMain from '../BannerMain';
-import PageDefault from '../pageDefault';
+import Button from '../Button/button.component'
 import { connect } from 'react-redux';
 
 import Slider, { SliderItem } from '../Carousel/components/Slider';
@@ -43,8 +43,7 @@ const Details = ({ selectedMovie }) => {
                 cursor: 'pointer',
               }}
             >
-              <i
-                class="fas fa-heart"
+                <Button
                 onClick={() => {
                   // check if logged in
                   if (localStorage.user) {
@@ -68,7 +67,7 @@ const Details = ({ selectedMovie }) => {
                     setMessage('you must be logged in');
                   }
                 }}
-              ></i>
+              >Add Movie to Watch List</Button>
               <h6 className="msg">{message || <span>&nbsp;&nbsp;</span>}</h6>
             </div>
             <h1 style={{ textAlign: 'center' }}>Cast</h1>

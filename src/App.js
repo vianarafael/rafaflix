@@ -6,7 +6,7 @@ import Details from './components/Details';
 import Category from './pages/login/Category';
 import Signin from './pages/login/signin';
 import Actor from './components/Actor';
-import { auth } from './firebase/firebase.utils';
+// import { auth } from './firebase/firebase.utils';
 import PageDefault from './components/pageDefault';
 
 function App() {
@@ -14,15 +14,15 @@ function App() {
 
   let unsubscribeFromAuth = null;
 
-  useEffect(() => {
-    unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
+  // useEffect(() => {
+  //   unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+  //     setCurrentUser(user);
 
-      return () => {
-        unsubscribeFromAuth();
-      };
-    });
-  });
+  //     return () => {
+  //       unsubscribeFromAuth();
+  //     };
+  //   });
+  // });
   return (
     <Router>
       <PageDefault currentUser={currentUser}>

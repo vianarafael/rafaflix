@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import axios from 'axios';
 
-import PageDefault from '../../../components/pageDefault';
+import api from '../../../services/api'
 import FormInput from '../../../components/form-input/form-input.component';
 import './style.scss';
 
@@ -47,9 +47,8 @@ const RegisterSignin = ({ handleSetUser }) => {
                 type="submit"
                 onClick={(e) => {
                   e.preventDefault();
-                  axios
-                    .post(
-                      'https://rafaflix-staging.herokuapp.com/users/login',
+                  api.post(
+                      '/session',
                       {
                         email: loginEmail,
                         password: loginPW,
@@ -57,6 +56,7 @@ const RegisterSignin = ({ handleSetUser }) => {
                     )
                     .then((res) => {
                       // send the data to the store
+                      console.log('signing in ', res.data)
                       handleSetUser(res.data);
                       localStorage.setItem('user', JSON.stringify(res.data));
                     })
