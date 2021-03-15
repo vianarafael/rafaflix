@@ -7,7 +7,7 @@ import Button from '../Button/button.component';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { setSearchedFilm } from '../../redux/searched-film/searched-film.action';
-// import { logUser } from '../../redux/logged-user/logged-user.reducer';
+
 import { setLogUser } from '../../redux/logged-user/logged-user.action';
 
 import { withRouter } from 'react-router';

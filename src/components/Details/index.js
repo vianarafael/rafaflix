@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import api from '../../services/api'
 import './details.scss';
 
 import BannerMain from '../BannerMain';
@@ -48,19 +48,22 @@ const Details = ({ selectedMovie }) => {
                   // check if logged in
                   if (localStorage.user) {
                     // if logged - add film to DB
-                    const user = JSON.parse(localStorage.user)[0];
-                    axios
+                    
+                    const user = JSON.parse(localStorage.user)
+                    api
                       .post(
-                        'https://rafaflix-staging.herokuapp.com/users/watchlist/',
+                        '/movie',
                         {
-                          email: user.email,
-                          password: user.password,
-                          movie_id: id,
-                        }
-                      )
+                             user_id: user.id,
+                             movie_id: id
+                        }, {
+                          headers: {
+                            authorization: `Bearer ${user.token}`
+                          }
+                      })
                       .then((res) => {
+                        console.log('res', res)
                         setMessage('The movie was added to the Watch List');
-                        localStorage.setItem('user', JSON.stringify(res.data));
                       })
                       .catch((err) => console.log(err));
                   } else {
