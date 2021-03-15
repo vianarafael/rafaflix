@@ -17,7 +17,6 @@ const Actor = ({ selectedActor }) => {
       .then((res) => setActor(res));
   });
   const image = `https://image.tmdb.org/t/p/w200/${actor.profile_path}`;
-  console.log(actor);
   return (
     <>
       <div className="actor-container">

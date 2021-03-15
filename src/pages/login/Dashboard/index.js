@@ -9,12 +9,12 @@ import Slider, {
 } from '../../../components/Carousel/components/Slider';
 import api from '../../../services/api';
 
-const Dashboard = ({ user, handleSetUser }) => {
+const Dashboard = () => {
   const [films, setFilms] = useState([]);
+  const user = JSON.parse(localStorage.user);
   useEffect(() => {
-    let isCancelled = false;
-    const user = JSON.parse(localStorage.user);
-    console.log(user)
+    // let isCancelled = false;
+    
     async function fetchData() {
       const movies = await api.get(`/movies/${user.id}`, {
         headers: {
@@ -54,6 +54,22 @@ const Dashboard = ({ user, handleSetUser }) => {
     // };
   }, []);
 
+  const removeFilm = async (e) => {
+    const movie_id = e.target.id;
+    const user_id = user.id;
+    const result = await api
+      .post('/remove',{
+        user_id,
+        movie_id
+      },
+        {
+          headers: {
+            authorization: `Bearer ${user.token}`
+          }
+        }
+    )
+    console.log(result)
+  }
   return (
     <>
       <Slider noRepeat>
@@ -64,6 +80,16 @@ const Dashboard = ({ user, handleSetUser }) => {
               videoTitle={film.original_title}
               poster={film.poster_path}
             />
+             <h4 className="remove-container">
+                  <span
+                className="remove"
+                    id={film.id}
+                    onClick={removeFilm}
+                  >
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    {' Remove'}
+                  </span>
+                </h4>
           </SliderItem>
           )
         ): null}
