@@ -52,23 +52,25 @@ const Dashboard = () => {
     // return () => {
     //   isCancelled = true;
     // };
-  }, []);
+  }, [films]);
 
   const removeFilm = async (e) => {
     const movie_id = e.target.id;
     const user_id = user.id;
     const result = await api
-      .post('/remove',{
+      .delete('/movie', {
+        data: {
         user_id,
         movie_id
-      },
-        {
-          headers: {
-            authorization: `Bearer ${user.token}`
-          }
-        }
+        },
+        
+        headers: {
+        authorization: `Bearer ${user.token}`
+      }
+    }
     )
-    console.log(result)
+    // need to change the state - hacky
+    setFilms()
   }
   return (
     <>
