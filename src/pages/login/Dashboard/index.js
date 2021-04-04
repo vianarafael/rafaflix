@@ -8,13 +8,14 @@ import Slider, {
   SliderItem,
 } from '../../../components/Carousel/components/Slider';
 import api from '../../../services/api';
+import { func } from 'prop-types';
 
 const Dashboard = () => {
   const [films, setFilms] = useState([]);
-  const user = JSON.parse(localStorage.user);
+  let user
+
   useEffect(() => {
-    // let isCancelled = false;
-    
+    user = JSON.parse(localStorage.user);
     async function fetchData() {
       const movies = await api.get(`/movies/${user.id}`, {
         headers: {
@@ -26,15 +27,11 @@ const Dashboard = () => {
         const result = await axios.get(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.REACT_APP_KEY}`)
         return result.data
       }))
-
       setFilms(watchList)
-      
-    
     }
     fetchData()
-    
   }, [films]);
-
+ 
   const removeFilm = async (e) => {
     const movie_id = e.target.id;
     const user_id = user.id;
@@ -53,9 +50,11 @@ const Dashboard = () => {
     // need to change the state - hacky
     setFilms()
   }
+ 
+
   return (
     <>
-      <Slider noRepeat>
+       <Slider noRepeat>
         {films ? films.map((film) => (
           < SliderItem key={ film.original_title } >
             <VideoCard
@@ -76,57 +75,10 @@ const Dashboard = () => {
           </SliderItem>
           )
         ): null}
-      </Slider>
-
+      </Slider> 
     </>
   );
 };
 
 export default Dashboard;
 
-
-      // <h1>{user ? `Welcome ${user[0].name}` : ''}</h1>
-      // <h2>Watch List</h2>
-      // <Slider noRepeat>
-      //   {films
-      //     ? films.map((film) => (
-      //         <SliderItem key={film.original_title}>
-      //           <VideoCard
-      //             id={film.id}
-      //             videoTitle={film.original_title}
-      //             poster={film.poster_path}
-      //           />
-      //           <h4 className="remove-container">
-      //             <span
-      //               className="remove"
-      //               onClick={() => {
-      //                 axios
-      //                   .post(
-      //                     'https://rafaflix-staging.herokuapp.com/users/watchlist/remove',
-      //                     {
-      //                       user_id: user[0].id,
-      //                       email: user[0].email,
-      //                       password: user[0].password,
-      //                       movie_id: film.id,
-      //                     }
-      //                   )
-      //                   .then((res) => {
-      //                     localStorage.setItem(
-      //                       'user',
-      //                       JSON.stringify(res.data)
-      //                     );
-      //                     setFilms(res.data);
-      //                     handleSetUser(res.data);
-      //                     // horrible hack - fix that ASAP
-      //                     window.location.reload();
-      //                   });
-      //               }}
-      //             >
-      //               <i class="fa fa-trash" aria-hidden="true"></i>
-      //               {' Remove'}
-      //             </span>
-      //           </h4>
-      //         </SliderItem>
-      //       ))
-      //     : ''}
-      // </Slider> 

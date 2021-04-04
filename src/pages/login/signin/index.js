@@ -13,7 +13,8 @@ function Signin({ logUser, setLogUser }) {
     setLogUser('in');
   };
 
-  useEffect(() => {
+  useEffect(() =>
+  {
     const loggedInUser = localStorage.getItem('user');
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
