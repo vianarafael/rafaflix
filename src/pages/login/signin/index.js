@@ -23,6 +23,7 @@ function Signin({ logUser, setLogUser }) {
     if (logUser.user === 'out') {
       setUser(null);
     }
+    return () => console.log('cleanup')
   }, []);
 
   return (

@@ -54,10 +54,8 @@ const RegisterSignin = ({ handleSetUser }) => {
                       }
                     )
                     .then((res) => {
-                      // send the data to the store
-                      handleSetUser(res.data);
-                      // and the local storage
                       localStorage.setItem('user', JSON.stringify(res.data));
+                      handleSetUser(res.data);
                     })
                     .catch((err) => setMsg('Wrong user name or password'));
                 }}
