@@ -8,7 +8,7 @@ import Slider, {
   SliderItem,
 } from '../../../components/Carousel/components/Slider';
 import api from '../../../services/api';
-import { func } from 'prop-types';
+
 
 const Dashboard = () => {
   const [films, setFilms] = useState([]);
