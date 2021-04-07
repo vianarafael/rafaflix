@@ -51,11 +51,10 @@ const Dashboard = () => {
     setFilms()
   }
  
-
   return (
     <>
        <Slider noRepeat>
-        {films ? films.map((film) => (
+        {films.length ? films.map((film) => (
           < SliderItem key={ film.original_title } >
             <VideoCard
               id={film.id}
@@ -74,7 +73,12 @@ const Dashboard = () => {
                 </h4>
           </SliderItem>
           )
-        ): null}
+        ) : (
+            <>
+              <h3>This is your watchlist</h3>
+              <h4>Movies added be displayed here here</h4>
+            </>
+        )}
       </Slider> 
     </>
   );

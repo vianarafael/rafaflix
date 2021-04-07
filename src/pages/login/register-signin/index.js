@@ -120,11 +120,6 @@ const RegisterSignin = ({ handleSetUser }) => {
                       password2,
                     }
                   )
-                  // .then((res) => {
-                  //   localStorage.setItem('user', JSON.stringify(res.data));
-                  //     // handleSetUser(res.data);
-                  //   return res.data
-                  // })
                   .then(() =>
                   {
                     setMsg("user registered")
