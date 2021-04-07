@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import axios from 'axios';
-
 import api from '../../../services/api'
 import FormInput from '../../../components/form-input/form-input.component';
 import './style.scss';
@@ -122,11 +120,14 @@ const RegisterSignin = ({ handleSetUser }) => {
                       password2,
                     }
                   )
-                  .then((res) => {
-                      // send the data to the store
-                      handleSetUser(res.data);
-                      // and the local storage
-                      localStorage.setItem('user', JSON.stringify(res.data));
+                  // .then((res) => {
+                  //   localStorage.setItem('user', JSON.stringify(res.data));
+                  //     // handleSetUser(res.data);
+                  //   return res.data
+                  // })
+                  .then(() =>
+                  {
+                    setMsg("user registered")
                   })
                   .catch((err) => console.log(err));
               }}
